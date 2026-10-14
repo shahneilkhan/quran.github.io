@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<title>নূর — কুরআন পড়ুন, শুনুন, বুঝুন</title>
+<title>Al Quran — কুরআন পড়ুন, শুনুন, বুঝুন</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -130,7 +130,6 @@ const FATIHA=["بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّ
 const bn=n=>(!lang||lang.startsWith("bn"))?String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]):String(n);
 const grid=document.getElementById("grid"),io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
 function render(list){grid.innerHTML="";list.forEach((s,i)=>{const b=document.createElement("button");b.className="sc";b.style.transitionDelay=(i%12)*45+"ms";b.innerHTML=`<span class="n"><i>${bn(s.n)}</i></span><span><b>${s.name}</b><small>${bn(s.c)} ${tt().ay}</small></span><span class="ar">${AR[s.n-1]}</span>`;b.onclick=()=>openS(s);grid.appendChild(b);io.observe(b)})}
-render(D);
 document.getElementById("q").oninput=e=>{const v=e.target.value.trim().toLowerCase();render(D.filter(s=>s.name.toLowerCase().replace(/[^a-z0-9]/g,"").includes(v.replace(/[^a-z0-9]/g,""))||String(s.n)===v))};
 const m=document.getElementById("m"),r=document.getElementById("r");
 const T={
@@ -170,7 +169,7 @@ const svB=()=>{try{localStorage.setItem("nbm",JSON.stringify(bm))}catch(e){}};
 const PL=[{id:"fat",s:1,days:[[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]},{id:"mulk",s:67,days:Array.from({length:30},(_,i)=>[i+1,i+1])},{id:"kahf",s:18,days:[[9,26],[32,44],[60,82],[83,98]]},{id:"yasin",s:36,days:[[1,12],[13,32],[33,47],[48,68],[69,83]]},{id:"ikhlas",s:112,days:[[1,1],[2,2],[3,3],[4,4]]}];
 const PT={en:["The message of Al-Fatihah","30 days with Al-Mulk","Four stories of Al-Kahf","Ya-Sin: faith, mercy, accountability","Al-Ikhlas: the oneness of Allah"],bn:["আল-ফাতিহার বার্তা","সূরা আল-মুলকের সাথে ৩০ দিন","সূরা আল-কাহফের ৪টি গল্প","ইয়াসিন: ঈমান, রহমত ও জবাবদিহি","আল-ইখলাস: আল্লাহর একত্ব"],ar:["رسالة الفاتحة","٣٠ يومًا مع سورة الملك","قصص الكهف الأربع","يس: الإيمان والرحمة والمساءلة","الإخلاص: توحيد الله"],ur:["سورۃ الفاتحہ کا پیغام","سورۃ الملک کے ساتھ ۳۰ دن","سورۃ الکہف کی چار کہانیاں","یٰسٓ: ایمان، رحمت اور جواب دہی","الاخلاص: اللہ کی وحدانیت"],fr:["Le message d'Al-Fatiha","30 jours avec Al-Mulk","Les quatre récits d'Al-Kahf","Ya-Sin : foi, miséricorde, responsabilité","Al-Ikhlas : l'unicité d'Allah"],id:["Pesan Al-Fatihah","30 hari bersama Al-Mulk","Empat kisah Al-Kahf","Ya-Sin: iman, rahmat, pertanggungjawaban","Al-Ikhlas: keesaan Allah"],tr:["Fâtiha'nın mesajı","Mülk ile 30 gün","Kehf'in dört kıssası","Yâsîn: iman, rahmet, hesap","İhlâs: Allah'ın birliği"],es:["El mensaje de Al-Fatiha","30 días con Al-Mulk","Las cuatro historias de Al-Kahf","Ya-Sin: fe, misericordia, rendición de cuentas","Al-Ikhlas: la unicidad de Allah"]};
 const pt=i=>(PT[(lang||"bn").split(".")[0]]||PT.en)[i];
-const BRAND={name:"Nur",logo:"نُور"};
+const BRAND={name:"Al Quran",logo:"القرآن"};
 var ca=[],curPlan=null,lv=null;
 function renderPlans(){const t=tt(),el=document.getElementById("pl");el.innerHTML=PL.map((p,i)=>`<button class="plan" data-p="${i}"><small>${p.days.length} ${t.dys}</small><span class="pt">${pt(i)}</span></button>`).join("");el.onclick=e=>{const b=e.target.closest("[data-p]");b&&showPlan(+b.dataset.p)}}
 const getPg=()=>{try{return JSON.parse(localStorage.getItem("npg")||"{}")}catch(e){return{}}};
