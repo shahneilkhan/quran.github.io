@@ -32,12 +32,12 @@ section{position:relative;z-index:1;padding:90px 5vw}
 .s1{animation:spin 90s linear infinite}.s2{animation:spin 60s linear infinite reverse;transform-origin:200px 200px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .hero>div:last-child{position:relative;max-width:760px}
-.bism{font-family:Amiri,serif;font-size:clamp(2.2rem,6vw,4rem);color:var(--gold);direction:rtl;animation:rise 2.2s cubic-bezier(.2,.7,.2,1) both}
+.bism{font-family:Amiri,serif;font-size:clamp(2.2rem,6vw,4rem);color:var(--gold);direction:rtl}
 @keyframes rise{from{opacity:0;filter:blur(14px);letter-spacing:.3em;transform:scale(1.15)}to{opacity:1;filter:blur(0);letter-spacing:0;transform:none}}
-h1{font-family:Amiri,serif;font-size:clamp(2.4rem,6.5vw,4.6rem);line-height:1.15;margin:18px 0;font-weight:700;animation:fade 1.2s .9s both}
-.hero p{color:var(--mute);font-size:1.1rem;animation:fade 1.2s 1.2s both}
+h1{font-family:Amiri,serif;font-size:clamp(2.4rem,6.5vw,4.6rem);line-height:1.15;margin:18px 0;font-weight:700;animation:fade 1.2s 1.9s both}
+.hero p{color:var(--mute);font-size:1.1rem;animation:fade 1.2s 2.2s both}
 @keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;animation:fade 1.2s 1.5s both}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;animation:fade 1.2s 2.5s both}
 .btn{padding:13px 30px;border-radius:99px;border:1px solid var(--gold);background:linear-gradient(120deg,var(--gold),#f0d58f);color:#1a1530;font-weight:600;text-decoration:none;transition:transform .3s,box-shadow .3s}
 .btn:hover{transform:translateY(-3px);box-shadow:0 12px 34px -10px var(--gold)}
 .btn.o{background:none;color:var(--ink)}
@@ -61,7 +61,7 @@ h2{font-family:Amiri,serif;font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:10px
 .plan h3{font-family:Amiri,serif;font-size:1.35rem;line-height:1.3}
 footer{position:relative;z-index:1;text-align:center;color:var(--mute);padding:50px 5vw;border-top:1px solid var(--line)}
 .modal{position:fixed;inset:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);display:none;overflow-y:auto;padding:70px 6vw}
-.modal.on{display:block;animation:fade .5s both}
+.modal.on{display:block;animation:open .6s cubic-bezier(.2,.7,.2,1) both}
 .modal .x{position:fixed;top:calc(18px + env(safe-area-inset-top,0px));right:5vw;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.3rem}
 .read{max-width:760px;margin:auto;text-align:center}
 .ay{font-family:Amiri,serif;direction:rtl;font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:2.1;padding:18px 0;border-bottom:1px solid var(--line);opacity:0;animation:fade .9s forwards}
@@ -88,7 +88,14 @@ h2 .ar{margin:0 14px;font-size:inherit}
 #rc{background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:10px 16px;font:inherit}
 .read .sc{width:100%;margin-bottom:10px}
 .plan{color:var(--ink);text-align:start;font:inherit;cursor:pointer}.pt{font-family:Amiri,serif;font-size:1.35rem;line-height:1.3}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sc,.ay{opacity:1;transform:none}}
+.bism .w{display:inline-block;opacity:0;animation:wr 1.3s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes wr{from{opacity:0;filter:blur(12px);transform:translateY(20px)}55%{text-shadow:0 0 30px var(--gold)}to{opacity:1;filter:none;transform:none;text-shadow:0 0 0 transparent}}
+@keyframes open{from{opacity:0;transform:scale(.96) translateY(24px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.ay{transition:color .5s,text-shadow .5s}
+.read.playing .ay:not(.on){color:color-mix(in srgb,var(--ink) 38%,transparent)}
+.read.playing .ay.on{color:var(--gold);text-shadow:0 0 24px color-mix(in srgb,var(--gold) 45%,transparent)}
+.sc:hover{transition:opacity .6s,transform .12s,border-color .3s;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),color-mix(in srgb,var(--gold) 18%,transparent),transparent 62%),var(--card)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sc,.ay,.bism .w{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -177,7 +184,7 @@ function openDay(i,d){const p=PL[i],x=p.days[d];openS(D[p.s-1],[x[0],x[1]],{i,d}
 function doneDay(){const{i,d}=curPlan,g=getPg(),k=PL[i].id;g[k]=g[k]||[];if(!g[k].includes(d))g[k].push(d);try{localStorage.setItem("npg",JSON.stringify(g))}catch(e){}if(d+1<PL[i].days.length)openDay(i,d+1);else showPlan(i)}
 function showPlan(i){stopA();cur=null;curPlan=null;lv=()=>showPlan(i);m.classList.add("on");document.body.style.overflow="hidden";m.scrollTop=0;const t=tt(),p=PL[i],g=getPg()[p.id]||[],s=D[p.s-1];r.innerHTML=`<h2>${pt(i)}</h2><p class="sub">${p.days.length} ${t.dys}</p>`+p.days.map((x,d)=>`<button class="sc in" data-pd="${i}:${d}"><span class="n"><i>${bn(d+1)}</i></span><span><b>${t.dy} ${bn(d+1)}</b><small>${s.name} · ${bn(x[0])}${x[1]>x[0]?"–"+bn(x[1]):""}</small></span><span class="ar">${g.includes(d)?"✓":""}</span></button>`).join("")}
 const au=new Audio();let q=[],qi=-1,pp=false;
-function setP(){document.querySelectorAll(".pb").forEach(b=>b.textContent=(pp&&+b.dataset.k===qi)?"⏸":"▶");const a=document.getElementById("pall");if(a)a.textContent=(pp?"⏸ ":"▶ ")+tt().pa;document.querySelectorAll(".ay").forEach((e,k)=>e.classList.toggle("on",pp&&k===qi))}
+function setP(){r.classList.toggle("playing",pp);document.querySelectorAll(".pb").forEach(b=>b.textContent=(pp&&+b.dataset.k===qi)?"⏸":"▶");const a=document.getElementById("pall");if(a)a.textContent=(pp?"⏸ ":"▶ ")+tt().pa;document.querySelectorAll(".ay").forEach((e,k)=>e.classList.toggle("on",pp&&k===qi))}
 function playAt(i){if(i>=q.length){pp=false;setP();return}qi=i;au.src=q[i];au.play().then(()=>{pp=true;setP();const e=document.querySelectorAll(".ay")[i];e&&e.scrollIntoView({block:"center",behavior:"smooth"})}).catch(()=>{pp=false;setP()})}
 au.onended=()=>playAt(qi+1);
 r.onchange=e=>{if(e.target.id==="rc"){rec=e.target.value;try{localStorage.setItem("nrc",rec)}catch(x){}openS(...ca)}};
@@ -198,6 +205,8 @@ const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retur
 document.querySelectorAll("[data-to]").forEach(el=>cio.observe(el));
 const toggleTheme=()=>{const d=document.documentElement,l=matchMedia("(prefers-color-scheme:light)").matches,cur=d.dataset.theme||(l?"light":"dark");d.dataset.theme=cur==="dark"?"light":"dark"};document.querySelectorAll(".tgl").forEach(b=>b.onclick=toggleTheme);
 document.getElementById("bmb").onclick=showBm;const ct=document.getElementById("cont");ct.hidden=!last;ct.onclick=e=>{e.preventDefault();openS(D[last-1])};
+const bs=document.querySelector(".bism");bs.innerHTML=bs.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w" style="animation-delay:${.2+i*.45}s">${w}</span>`).join(" ");
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&matchMedia("(hover:hover)").matches){grid.addEventListener("pointermove",e=>{const c=e.target.closest(".sc");if(!c)return;const b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform=`perspective(700px) rotateX(${-y*10}deg) rotateY(${x*12}deg) translateY(-4px)`;c.style.setProperty("--gx",(x+.5)*100+"%");c.style.setProperty("--gy",(y+.5)*100+"%")});grid.addEventListener("pointerout",e=>{const c=e.target.closest(".sc");if(c)c.style.transform=""})}
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
 </body>
