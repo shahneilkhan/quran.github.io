@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1030">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>নূর — কুরআন পড়ুন, শুনুন, বুঝুন</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b1030;--bg2:#121a4a;--ink:#f1ead8;--mute:#9aa3c7;--gold:#d4ab55;--teal:#4cc3b5;--line:rgba(212,171,85,.22);--card:rgba(255,255,255,.04);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f1e4;--bg2:#ebe3cf;--ink:#16193a;--mute:#5d6288;--gold:#9a6f17;--teal:#0f7f74;--line:rgba(154,111,23,.3);--card:rgba(22,25,58,.05)}}
+:root[data-theme="light"]{--bg:#f6f1e4;--bg2:#ebe3cf;--ink:#16193a;--mute:#5d6288;--gold:#9a6f17;--teal:#0f7f74;--line:rgba(154,111,23,.3);--card:rgba(22,25,58,.05)}
+:root[data-theme="dark"]{--bg:#0b1030;--bg2:#121a4a;--ink:#f1ead8;--mute:#9aa3c7;--gold:#d4ab55;--teal:#4cc3b5;--line:rgba(212,171,85,.22);--card:rgba(255,255,255,.04)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;line-height:1.7;overflow-x:hidden}
+.glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(76,195,181,.16),transparent 65%);transform:translate(-50%,-50%);left:50%;top:30%;z-index:0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line)}
+.logo{font-family:Amiri,serif;font-size:1.7rem;color:var(--gold);text-decoration:none}
+nav div{display:flex;gap:22px;align-items:center}
+nav a{color:var(--mute);text-decoration:none;font-size:.95rem}nav a:hover{color:var(--ink)}
+button{font:inherit;cursor:pointer}
+.tg{background:none;border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:4px 14px}
+section{position:relative;z-index:1;padding:90px 5vw}
+.hero{min-height:92vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding-top:40px}
+.stars{position:absolute;inset:0;display:grid;place-items:center;opacity:.55;pointer-events:none}
+.stars svg{width:min(120vw,900px);fill:none;stroke:var(--gold);stroke-width:.6}
+.s1{animation:spin 90s linear infinite}.s2{animation:spin 60s linear infinite reverse;transform-origin:200px 200px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero>div:last-child{position:relative;max-width:760px}
+.bism{font-family:Amiri,serif;font-size:clamp(2.2rem,6vw,4rem);color:var(--gold);direction:rtl;animation:rise 2.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;filter:blur(14px);letter-spacing:.3em;transform:scale(1.15)}to{opacity:1;filter:blur(0);letter-spacing:0;transform:none}}
+h1{font-family:Amiri,serif;font-size:clamp(2.4rem,6.5vw,4.6rem);line-height:1.15;margin:18px 0;font-weight:700;animation:fade 1.2s .9s both}
+.hero p{color:var(--mute);font-size:1.1rem;animation:fade 1.2s 1.2s both}
+@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;animation:fade 1.2s 1.5s both}
+.btn{padding:13px 30px;border-radius:99px;border:1px solid var(--gold);background:linear-gradient(120deg,var(--gold),#f0d58f);color:#1a1530;font-weight:600;text-decoration:none;transition:transform .3s,box-shadow .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 34px -10px var(--gold)}
+.btn.o{background:none;color:var(--ink)}
+.stats{display:flex;justify-content:center;gap:clamp(24px,6vw,80px);flex-wrap:wrap;padding:0 5vw 50px;position:relative;z-index:1}
+.stats b{display:block;font-family:Amiri,serif;font-size:2.8rem;color:var(--gold);text-align:center;line-height:1.2}.stats span{color:var(--mute);font-size:.9rem}
+.stats div{text-align:center}
+h2{font-family:Amiri,serif;font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:10px}
+.sub{color:var(--mute);margin-bottom:28px}
+.search{width:100%;max-width:520px;padding:14px 22px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;outline:none;margin-bottom:34px}
+.search:focus-visible,.btn:focus-visible,button:focus-visible,.sc:focus-visible,nav a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.sc{display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);text-align:left;opacity:0;transform:translateY(24px) scale(.97);transition:opacity .6s,transform .6s,border-color .3s,background .3s}
+.sc.in{opacity:1;transform:none}
+.sc:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,transparent);transform:translateY(-4px)}
+.n{flex:none;width:42px;height:42px;display:grid;place-items:center;transform:rotate(45deg);border:1px solid var(--gold);border-radius:8px}
+.n i{transform:rotate(-45deg);font-style:normal;font-size:.85rem;color:var(--gold)}
+.sc b{display:block;font-weight:500}.sc small{color:var(--mute)}
+.plans{display:flex;gap:18px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory}
+.plan{flex:none;width:280px;min-height:190px;padding:24px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(160deg,var(--bg2),var(--bg));scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .4s}
+.plan:hover{transform:translateY(-8px) rotate(-1deg)}.plan small{color:var(--teal)}
+.plan h3{font-family:Amiri,serif;font-size:1.35rem;line-height:1.3}
+footer{position:relative;z-index:1;text-align:center;color:var(--mute);padding:50px 5vw;border-top:1px solid var(--line)}
+.modal{position:fixed;inset:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);display:none;overflow-y:auto;padding:70px 6vw}
+.modal.on{display:block;animation:fade .5s both}
+.modal .x{position:fixed;top:calc(18px + env(safe-area-inset-top,0px));right:5vw;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.3rem}
+.read{max-width:760px;margin:auto;text-align:center}
+.ay{font-family:Amiri,serif;direction:rtl;font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:2.1;padding:18px 0;border-bottom:1px solid var(--line);opacity:0;animation:fade .9s forwards}
+.note{color:var(--mute);margin-top:30px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sc,.ay{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="glow" id="glow"></div>
+<nav><a class="logo" href="#top">نُور</a><div><a href="#surahs">সূরা</a><a href="#plans">লার্নিং প্ল্যান</a><button class="tg" id="tg" aria-label="থিম বদলান">থিম</button></div></nav>
+
+<section class="hero" id="top">
+<div class="stars" aria-hidden="true"><svg viewBox="0 0 400 400"><g class="s1" style="transform-origin:200px 200px"><rect x="90" y="90" width="220" height="220"/><rect x="90" y="90" width="220" height="220" transform="rotate(45 200 200)"/><circle cx="200" cy="200" r="150"/></g><g class="s2"><rect x="130" y="130" width="140" height="140"/><rect x="130" y="130" width="140" height="140" transform="rotate(45 200 200)"/><circle cx="200" cy="200" r="70"/><circle cx="200" cy="200" r="190"/></g></svg></div>
+<div>
+<div class="bism">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+<h1>কুরআন পড়ুন, শুনুন, বুঝুন</h1>
+<p>সব ভাষায়, বিনামূল্যে। আরবি পাঠ, অনুবাদ, তাফসীর ও তিলাওয়াত এক জায়গায়।</p>
+<div class="cta"><a class="btn" href="#surahs" data-open="1">পড়া শুরু করুন</a><a class="btn o" href="#plans">লার্নিং প্ল্যান দেখুন</a></div>
+</div>
+</section>
+
+<div class="stats"><div><b data-to="114">0</b><span>সূরা</span></div><div><b data-to="6236">0</b><span>আয়াত</span></div><div><b data-to="30">0</b><span>পারা</span></div></div>
+
+<section id="surahs">
+<h2>সূরার তালিকা</h2><p class="sub">নাম বা নম্বর লিখে খুঁজুন। আল-ফাতিহা খুলে দেখুন।</p>
+<input class="search" id="q" placeholder="সূরা খুঁজুন, যেমন Kahf বা 18" aria-label="সূরা খুঁজুন">
+<div class="grid" id="grid"></div>
+</section>
+
+<section id="plans">
+<h2>লার্নিং প্ল্যান</h2><p class="sub">ধাপে ধাপে বুঝে পড়ার গাইডেড কোর্স।</p>
+<div class="plans">
+<div class="plan"><small>৭ দিন</small><h3>আল-ফাতিহার বার্তা</h3></div>
+<div class="plan"><small>৩০ দিন</small><h3>সূরা আল-মুলক: শিখুন, ভাবুন, মুখস্থ করুন</h3></div>
+<div class="plan"><small>সূরা আল-কাহফ</small><h3>৪টি গল্প থেকে জীবনের শিক্ষা</h3></div>
+<div class="plan"><small>সূরা ইয়াসিন</small><h3>ঈমান, রহমত ও জবাবদিহি</h3></div>
+<div class="plan"><small>সূরা আল-ইখলাস</small><h3>আল্লাহর একত্ব</h3></div>
+</div>
+</section>
+
+<footer>নূর, নমুনা ডিজাইন। প্রকৃত আয়াত ও অনুবাদ পরে অফিসিয়াল API থেকে আসবে।</footer>
+
+<div class="modal" id="m" role="dialog" aria-modal="true" aria-label="সূরা পাঠ"><button class="x" id="x" aria-label="বন্ধ করুন">✕</button><div class="read" id="r"></div></div>
+
+<script>
+const D="Al-Fatihah 7,Al-Baqarah 286,Ali 'Imran 200,An-Nisa 176,Al-Ma'idah 120,Al-An'am 165,Al-A'raf 206,Al-Anfal 75,At-Tawbah 129,Yunus 109,Hud 123,Yusuf 111,Ar-Ra'd 43,Ibrahim 52,Al-Hijr 99,An-Nahl 128,Al-Isra 111,Al-Kahf 110,Maryam 98,Taha 135,Al-Anbya 112,Al-Hajj 78,Al-Mu'minun 118,An-Nur 64,Al-Furqan 77,Ash-Shu'ara 227,An-Naml 93,Al-Qasas 88,Al-'Ankabut 69,Ar-Rum 60,Luqman 34,As-Sajdah 30,Al-Ahzab 73,Saba 54,Fatir 45,Ya-Sin 83,As-Saffat 182,Sad 88,Az-Zumar 75,Ghafir 85,Fussilat 54,Ash-Shuraa 53,Az-Zukhruf 89,Ad-Dukhan 59,Al-Jathiyah 37,Al-Ahqaf 35,Muhammad 38,Al-Fath 29,Al-Hujurat 18,Qaf 45,Adh-Dhariyat 60,At-Tur 49,An-Najm 62,Al-Qamar 55,Ar-Rahman 78,Al-Waqi'ah 96,Al-Hadid 29,Al-Mujadila 22,Al-Hashr 24,Al-Mumtahanah 13,As-Saf 14,Al-Jumu'ah 11,Al-Munafiqun 11,At-Taghabun 18,At-Talaq 12,At-Tahrim 12,Al-Mulk 30,Al-Qalam 52,Al-Haqqah 52,Al-Ma'arij 44,Nuh 28,Al-Jinn 28,Al-Muzzammil 20,Al-Muddaththir 56,Al-Qiyamah 40,Al-Insan 31,Al-Mursalat 50,An-Naba 40,An-Nazi'at 46,'Abasa 42,At-Takwir 29,Al-Infitar 19,Al-Mutaffifin 36,Al-Inshiqaq 25,Al-Buruj 22,At-Tariq 17,Al-A'la 19,Al-Ghashiyah 26,Al-Fajr 30,Al-Balad 20,Ash-Shams 15,Al-Layl 21,Ad-Duhaa 11,Ash-Sharh 8,At-Tin 8,Al-'Alaq 19,Al-Qadr 5,Al-Bayyinah 8,Az-Zalzalah 8,Al-'Adiyat 11,Al-Qari'ah 11,At-Takathur 8,Al-'Asr 3,Al-Humazah 9,Al-Fil 5,Quraysh 4,Al-Ma'un 7,Al-Kawthar 3,Al-Kafirun 6,An-Nasr 3,Al-Masad 5,Al-Ikhlas 4,Al-Falaq 5,An-Nas 6".split(",").map((s,i)=>{const k=s.lastIndexOf(" ");return{n:i+1,name:s.slice(0,k),c:+s.slice(k+1)}});
+const FATIHA=["بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ","ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ","ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ","مَـٰلِكِ يَوْمِ ٱلدِّينِ","إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ","ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ","صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ"];
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const grid=document.getElementById("grid"),io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
+function render(list){grid.innerHTML="";list.forEach((s,i)=>{const b=document.createElement("button");b.className="sc";b.style.transitionDelay=(i%12)*45+"ms";b.innerHTML=`<span class="n"><i>${bn(s.n)}</i></span><span><b>${s.name}</b><small>${bn(s.c)} আয়াত</small></span>`;b.onclick=()=>openS(s);grid.appendChild(b);io.observe(b)})}
+render(D);
+document.getElementById("q").oninput=e=>{const v=e.target.value.trim().toLowerCase();render(D.filter(s=>s.name.toLowerCase().replace(/[^a-z0-9]/g,"").includes(v.replace(/[^a-z0-9]/g,""))||String(s.n)===v))};
+const m=document.getElementById("m"),r=document.getElementById("r");
+function openS(s){r.innerHTML=`<h2>${s.name}</h2><p class="sub">${bn(s.c)} আয়াত</p>`+(s.n==1?FATIHA.map((a,i)=>`<div class="ay" style="animation-delay:${.3+i*.45}s">${a}</div>`).join(""):`<p class="note">এই সূরার আয়াত অফিসিয়াল Quran API থেকে লোড হবে।</p>`);m.classList.add("on");m.scrollTop=0;document.body.style.overflow="hidden";document.getElementById("x").focus()}
+function closeS(){m.classList.remove("on");document.body.style.overflow=""}
+document.getElementById("x").onclick=closeS;addEventListener("keydown",e=>e.key==="Escape"&&closeS());
+document.querySelector("[data-open]").addEventListener("click",()=>setTimeout(()=>openS(D[0]),300));
+const g=document.getElementById("glow");addEventListener("pointermove",e=>{g.style.left=e.clientX+"px";g.style.top=e.clientY+"px"});
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const t=+e.target.dataset.to,t0=performance.now();(function f(n){const p=Math.min((n-t0)/1600,1);e.target.textContent=bn(Math.round(t*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(f)})(t0)}),{threshold:.6});
+document.querySelectorAll("[data-to]").forEach(el=>cio.observe(el));
+document.getElementById("tg").onclick=()=>{const d=document.documentElement,l=matchMedia("(prefers-color-scheme:light)").matches,cur=d.dataset.theme||(l?"light":"dark");d.dataset.theme=cur==="dark"?"light":"dark"};
+if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script>
+</body>
+</html>
