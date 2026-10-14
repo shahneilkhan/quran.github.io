@@ -66,33 +66,45 @@ footer{position:relative;z-index:1;text-align:center;color:var(--mute);padding:5
 .read{max-width:760px;margin:auto;text-align:center}
 .ay{font-family:Amiri,serif;direction:rtl;font-size:clamp(1.8rem,4.5vw,2.6rem);line-height:2.1;padding:18px 0;border-bottom:1px solid var(--line);opacity:0;animation:fade .9s forwards}
 .note{color:var(--mute);margin-top:30px}
+.lm{position:fixed;top:calc(18px + env(safe-area-inset-top,0px));left:5vw;height:44px}
+.lp{position:fixed;top:calc(70px + env(safe-area-inset-top,0px));right:5vw;z-index:20;width:min(340px,90vw);max-height:65vh;overflow-y:auto;display:none;grid-template-columns:1fr 1fr;gap:6px;padding:12px;border-radius:16px;border:1px solid var(--line);background:var(--bg2)}
+.lp.on{display:grid;animation:fade .3s both}
+.lp button{padding:9px 10px;border-radius:10px;border:1px solid transparent;background:none;color:var(--ink);text-align:left}
+.lp button:hover,.lp button.a{border-color:var(--gold);background:var(--card)}
+.ay{position:relative}.no{font-family:"Hind Siliguri",sans-serif;font-size:.8rem;color:var(--gold);border:1px solid var(--line);border-radius:99px;padding:0 10px;margin-left:12px;direction:ltr;display:inline-block;vertical-align:middle}
+.tr{font-size:1.05rem;color:var(--mute);margin:-4px 0 6px;padding:0 4px 16px;border-bottom:1px solid var(--line)}
+.ay{border-bottom:0;padding-bottom:6px}
+.fw{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;text-align:start;max-width:1100px;margin:0 auto}
+.fw h4{font-family:Amiri,serif;color:var(--ink);font-size:1.2rem;margin-bottom:8px}.fw a{display:block;color:var(--mute);text-decoration:none}.fw a:hover{color:var(--ink)}
+.fb p{max-width:300px;margin-top:6px}.fb .logo{font-size:2rem}.fc{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}footer small{display:block;margin-top:34px}
+.lp.up{top:auto;bottom:20px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sc,.ay{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <div class="glow" id="glow"></div>
-<nav><a class="logo" href="#top">نُور</a><div><a href="#surahs">সূরা</a><a href="#plans">লার্নিং প্ল্যান</a><button class="tg" id="tg" aria-label="থিম বদলান">থিম</button></div></nav>
+<nav><a class="logo" href="#top">نُور</a><div><a href="#surahs" data-i="s">সূরা</a><a href="#plans" data-i="p">লার্নিং প্ল্যান</a><button class="tg" id="lb" aria-label="ভাষা বদলান">ভাষা: বাংলা</button><button class="tg tgl" id="tg" aria-label="থিম বদলান"><span data-i="th">থিম</span></button></div></nav>
 
 <section class="hero" id="top">
 <div class="stars" aria-hidden="true"><svg viewBox="0 0 400 400"><g class="s1" style="transform-origin:200px 200px"><rect x="90" y="90" width="220" height="220"/><rect x="90" y="90" width="220" height="220" transform="rotate(45 200 200)"/><circle cx="200" cy="200" r="150"/></g><g class="s2"><rect x="130" y="130" width="140" height="140"/><rect x="130" y="130" width="140" height="140" transform="rotate(45 200 200)"/><circle cx="200" cy="200" r="70"/><circle cx="200" cy="200" r="190"/></g></svg></div>
 <div>
 <div class="bism">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
-<h1>কুরআন পড়ুন, শুনুন, বুঝুন</h1>
-<p>সব ভাষায়, বিনামূল্যে। আরবি পাঠ, অনুবাদ, তাফসীর ও তিলাওয়াত এক জায়গায়।</p>
-<div class="cta"><a class="btn" href="#surahs" data-open="1">পড়া শুরু করুন</a><a class="btn o" href="#plans">লার্নিং প্ল্যান দেখুন</a></div>
+<h1 data-i="h">কুরআন পড়ুন, শুনুন, বুঝুন</h1>
+<p data-i="d">সব ভাষায়, বিনামূল্যে।</p>
+<div class="cta"><a class="btn" href="#surahs" data-open="1" data-i="go">পড়া শুরু করুন</a><a class="btn o" href="#plans" data-i="pl">প্ল্যান দেখুন</a></div>
 </div>
 </section>
 
-<div class="stats"><div><b data-to="114">0</b><span>সূরা</span></div><div><b data-to="6236">0</b><span>আয়াত</span></div><div><b data-to="30">0</b><span>পারা</span></div></div>
+<div class="stats"><div><b data-to="114">0</b><span data-i="n1">সূরা</span></div><div><b data-to="6236">0</b><span data-i="n2">আয়াত</span></div><div><b data-to="30">0</b><span data-i="n3">পারা</span></div></div>
 
 <section id="surahs">
-<h2>সূরার তালিকা</h2><p class="sub">নাম বা নম্বর লিখে খুঁজুন। আল-ফাতিহা খুলে দেখুন।</p>
-<input class="search" id="q" placeholder="সূরা খুঁজুন, যেমন Kahf বা 18" aria-label="সূরা খুঁজুন">
+<h2 data-i="h2">সূরার তালিকা</h2><p class="sub"></p>
+<input class="search" id="q" data-ip="ph" placeholder="সূরা খুঁজুন" aria-label="সূরা খুঁজুন">
 <div class="grid" id="grid"></div>
 </section>
 
 <section id="plans">
-<h2>লার্নিং প্ল্যান</h2><p class="sub">ধাপে ধাপে বুঝে পড়ার গাইডেড কোর্স।</p>
+<h2 data-i="h3">লার্নিং প্ল্যান</h2><p class="sub"></p>
 <div class="plans">
 <div class="plan"><small>৭ দিন</small><h3>আল-ফাতিহার বার্তা</h3></div>
 <div class="plan"><small>৩০ দিন</small><h3>সূরা আল-মুলক: শিখুন, ভাবুন, মুখস্থ করুন</h3></div>
@@ -102,27 +114,52 @@ footer{position:relative;z-index:1;text-align:center;color:var(--mute);padding:5
 </div>
 </section>
 
-<footer>নূর, নমুনা ডিজাইন। প্রকৃত আয়াত ও অনুবাদ পরে অফিসিয়াল API থেকে আসবে।</footer>
+<footer><div class="fw"><div class="fb"><span class="logo">نُور</span><p data-i="ft"></p></div><div><h4 data-i="nv"></h4><a href="#top" data-i="hm"></a><a href="#surahs" data-i="s"></a><a href="#plans" data-i="p"></a></div><div class="fc"><button class="tg tgl"><span data-i="th"></span></button><button class="tg" id="lb3"></button></div></div><small>© 2026 Nur · alquran.cloud</small></footer>
 
-<div class="modal" id="m" role="dialog" aria-modal="true" aria-label="সূরা পাঠ"><button class="x" id="x" aria-label="বন্ধ করুন">✕</button><div class="read" id="r"></div></div>
+<div class="lp" id="lp" role="menu"></div>
+<div class="modal" id="m" role="dialog" aria-modal="true" aria-label="সূরা পাঠ"><button class="tg lm" id="lb2" aria-label="ভাষা বদলান">ভাষা</button><button class="x" id="x" aria-label="বন্ধ করুন">✕</button><div class="read" id="r"></div></div>
 
 <script>
 const D="Al-Fatihah 7,Al-Baqarah 286,Ali 'Imran 200,An-Nisa 176,Al-Ma'idah 120,Al-An'am 165,Al-A'raf 206,Al-Anfal 75,At-Tawbah 129,Yunus 109,Hud 123,Yusuf 111,Ar-Ra'd 43,Ibrahim 52,Al-Hijr 99,An-Nahl 128,Al-Isra 111,Al-Kahf 110,Maryam 98,Taha 135,Al-Anbya 112,Al-Hajj 78,Al-Mu'minun 118,An-Nur 64,Al-Furqan 77,Ash-Shu'ara 227,An-Naml 93,Al-Qasas 88,Al-'Ankabut 69,Ar-Rum 60,Luqman 34,As-Sajdah 30,Al-Ahzab 73,Saba 54,Fatir 45,Ya-Sin 83,As-Saffat 182,Sad 88,Az-Zumar 75,Ghafir 85,Fussilat 54,Ash-Shuraa 53,Az-Zukhruf 89,Ad-Dukhan 59,Al-Jathiyah 37,Al-Ahqaf 35,Muhammad 38,Al-Fath 29,Al-Hujurat 18,Qaf 45,Adh-Dhariyat 60,At-Tur 49,An-Najm 62,Al-Qamar 55,Ar-Rahman 78,Al-Waqi'ah 96,Al-Hadid 29,Al-Mujadila 22,Al-Hashr 24,Al-Mumtahanah 13,As-Saf 14,Al-Jumu'ah 11,Al-Munafiqun 11,At-Taghabun 18,At-Talaq 12,At-Tahrim 12,Al-Mulk 30,Al-Qalam 52,Al-Haqqah 52,Al-Ma'arij 44,Nuh 28,Al-Jinn 28,Al-Muzzammil 20,Al-Muddaththir 56,Al-Qiyamah 40,Al-Insan 31,Al-Mursalat 50,An-Naba 40,An-Nazi'at 46,'Abasa 42,At-Takwir 29,Al-Infitar 19,Al-Mutaffifin 36,Al-Inshiqaq 25,Al-Buruj 22,At-Tariq 17,Al-A'la 19,Al-Ghashiyah 26,Al-Fajr 30,Al-Balad 20,Ash-Shams 15,Al-Layl 21,Ad-Duhaa 11,Ash-Sharh 8,At-Tin 8,Al-'Alaq 19,Al-Qadr 5,Al-Bayyinah 8,Az-Zalzalah 8,Al-'Adiyat 11,Al-Qari'ah 11,At-Takathur 8,Al-'Asr 3,Al-Humazah 9,Al-Fil 5,Quraysh 4,Al-Ma'un 7,Al-Kawthar 3,Al-Kafirun 6,An-Nasr 3,Al-Masad 5,Al-Ikhlas 4,Al-Falaq 5,An-Nas 6".split(",").map((s,i)=>{const k=s.lastIndexOf(" ");return{n:i+1,name:s.slice(0,k),c:+s.slice(k+1)}});
 const FATIHA=["بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ","ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ","ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ","مَـٰلِكِ يَوْمِ ٱلدِّينِ","إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ","ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ","صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ"];
-const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const bn=n=>(!lang||lang.startsWith("bn"))?String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]):String(n);
 const grid=document.getElementById("grid"),io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
-function render(list){grid.innerHTML="";list.forEach((s,i)=>{const b=document.createElement("button");b.className="sc";b.style.transitionDelay=(i%12)*45+"ms";b.innerHTML=`<span class="n"><i>${bn(s.n)}</i></span><span><b>${s.name}</b><small>${bn(s.c)} আয়াত</small></span>`;b.onclick=()=>openS(s);grid.appendChild(b);io.observe(b)})}
+function render(list){grid.innerHTML="";list.forEach((s,i)=>{const b=document.createElement("button");b.className="sc";b.style.transitionDelay=(i%12)*45+"ms";b.innerHTML=`<span class="n"><i>${bn(s.n)}</i></span><span><b>${s.name}</b><small>${bn(s.c)} ${tt().ay}</small></span>`;b.onclick=()=>openS(s);grid.appendChild(b);io.observe(b)})}
 render(D);
 document.getElementById("q").oninput=e=>{const v=e.target.value.trim().toLowerCase();render(D.filter(s=>s.name.toLowerCase().replace(/[^a-z0-9]/g,"").includes(v.replace(/[^a-z0-9]/g,""))||String(s.n)===v))};
 const m=document.getElementById("m"),r=document.getElementById("r");
-function openS(s){r.innerHTML=`<h2>${s.name}</h2><p class="sub">${bn(s.c)} আয়াত</p>`+(s.n==1?FATIHA.map((a,i)=>`<div class="ay" style="animation-delay:${.3+i*.45}s">${a}</div>`).join(""):`<p class="note">এই সূরার আয়াত অফিসিয়াল Quran API থেকে লোড হবে।</p>`);m.classList.add("on");m.scrollTop=0;document.body.style.overflow="hidden";document.getElementById("x").focus()}
+const T={
+en:{s:"Surahs",p:"Learning plans",h:"Read, listen & study the Quran",d:"Free, in many languages. Arabic text, translations and more in one place.",go:"Start reading",pl:"See plans",ph:"Search a surah, e.g. Kahf or 18",ay:"Ayahs",ld:"Loading…",er:"Could not load. Check your internet and try again.",n1:"Surahs",n2:"Ayahs",n3:"Juz",h2:"The Quran",h3:"Learning plans",ft:"A free place to read and understand the Quran.",nv:"Navigate",hm:"Home",th:"Theme",lg:"Language"},
+bn:{s:"সূরা",p:"লার্নিং প্ল্যান",h:"কুরআন পড়ুন, শুনুন, বুঝুন",d:"সব ভাষায়, বিনামূল্যে। আরবি পাঠ, অনুবাদ ও আরও অনেক কিছু এক জায়গায়।",go:"পড়া শুরু করুন",pl:"প্ল্যান দেখুন",ph:"সূরা খুঁজুন, যেমন Kahf বা 18",ay:"আয়াত",ld:"লোড হচ্ছে…",er:"লোড হয়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।",n1:"সূরা",n2:"আয়াত",n3:"পারা",h2:"সূরার তালিকা",h3:"লার্নিং প্ল্যান",ft:"কুরআন পড়া ও বোঝার একটি বিনামূল্যের জায়গা।",nv:"নেভিগেট",hm:"হোম",th:"থিম",lg:"ভাষা"},
+ar:{s:"السور",p:"خطط التعلم",h:"اقرأ واستمع وتدبّر القرآن",d:"مجانًا وبلغات كثيرة. النص العربي والترجمات في مكان واحد.",go:"ابدأ القراءة",pl:"عرض الخطط",ph:"ابحث عن سورة، مثل الكهف أو 18",ay:"آيات",ld:"جارٍ التحميل…",er:"تعذّر التحميل. تحقق من الإنترنت وحاول مجددًا.",n1:"سورة",n2:"آية",n3:"جزء",h2:"القرآن الكريم",h3:"خطط التعلم",ft:"مكان مجاني لقراءة القرآن وفهمه.",nv:"التنقل",hm:"الرئيسية",th:"المظهر",lg:"اللغة"},
+ur:{s:"سورتیں",p:"سیکھنے کے منصوبے",h:"قرآن پڑھیں، سنیں اور سمجھیں",d:"مفت اور کئی زبانوں میں۔ عربی متن اور ترجمہ ایک جگہ۔",go:"پڑھنا شروع کریں",pl:"منصوبے دیکھیں",ph:"سورت تلاش کریں، جیسے Kahf یا 18",ay:"آیات",ld:"لوڈ ہو رہا ہے…",er:"لوڈ نہیں ہو سکا۔ انٹرنیٹ چیک کر کے دوبارہ کوشش کریں۔",n1:"سورتیں",n2:"آیات",n3:"پارے",h2:"قرآن",h3:"سیکھنے کے منصوبے",ft:"قرآن پڑھنے اور سمجھنے کی مفت جگہ۔",nv:"نیویگیشن",hm:"ہوم",th:"تھیم",lg:"زبان"},
+fr:{s:"Sourates",p:"Parcours",h:"Lire, écouter et étudier le Coran",d:"Gratuit, en plusieurs langues. Texte arabe et traductions au même endroit.",go:"Commencer la lecture",pl:"Voir les parcours",ph:"Chercher une sourate, ex. Kahf ou 18",ay:"versets",ld:"Chargement…",er:"Chargement impossible. Vérifiez votre connexion et réessayez.",n1:"Sourates",n2:"Versets",n3:"Juz",h2:"Le Coran",h3:"Parcours d'apprentissage",ft:"Un espace gratuit pour lire et comprendre le Coran.",nv:"Navigation",hm:"Accueil",th:"Thème",lg:"Langue"},
+id:{s:"Surah",p:"Rencana belajar",h:"Baca, dengar & pelajari Al-Qur'an",d:"Gratis, dalam banyak bahasa. Teks Arab dan terjemahan di satu tempat.",go:"Mulai membaca",pl:"Lihat rencana",ph:"Cari surah, mis. Kahf atau 18",ay:"ayat",ld:"Memuat…",er:"Gagal memuat. Periksa internet lalu coba lagi.",n1:"Surah",n2:"Ayat",n3:"Juz",h2:"Al-Qur'an",h3:"Rencana belajar",ft:"Tempat gratis untuk membaca dan memahami Al-Qur'an.",nv:"Navigasi",hm:"Beranda",th:"Tema",lg:"Bahasa"},
+tr:{s:"Sureler",p:"Öğrenme planları",h:"Kur'an'ı oku, dinle ve incele",d:"Ücretsiz ve birçok dilde. Arapça metin ve mealler tek yerde.",go:"Okumaya başla",pl:"Planları gör",ph:"Sure ara, örn. Kehf veya 18",ay:"ayet",ld:"Yükleniyor…",er:"Yüklenemedi. İnterneti kontrol edip tekrar deneyin.",n1:"Sure",n2:"Ayet",n3:"Cüz",h2:"Kur'an-ı Kerim",h3:"Öğrenme planları",ft:"Kur'an'ı okumak ve anlamak için ücretsiz bir alan.",nv:"Gezinme",hm:"Ana sayfa",th:"Tema",lg:"Dil"},
+es:{s:"Suras",p:"Planes de estudio",h:"Lee, escucha y estudia el Corán",d:"Gratis y en muchos idiomas. Texto árabe y traducciones en un solo lugar.",go:"Empezar a leer",pl:"Ver planes",ph:"Buscar una sura, p. ej. Kahf o 18",ay:"aleyas",ld:"Cargando…",er:"No se pudo cargar. Revisa tu conexión e inténtalo de nuevo.",n1:"Suras",n2:"Aleyas",n3:"Yuz",h2:"El Corán",h3:"Planes de estudio",ft:"Un espacio gratuito para leer y comprender el Corán.",nv:"Navegar",hm:"Inicio",th:"Tema",lg:"Idioma"}};
+const tt=()=>T[(lang||"bn").split(".")[0]]||T.en;
+function applyUI(){const t=tt(),c=(lang||"").split(".")[0],d=document.documentElement;d.lang=T[c]?c:"en";d.dir=(c==="ar"||c==="ur")?"rtl":"ltr";document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t[e.dataset.i]);document.querySelectorAll("[data-ip]").forEach(e=>e.placeholder=t[e.dataset.ip]);document.getElementById("lb2").textContent=t.lg;document.getElementById("lb3").textContent=t.lg+": "+lname();drawL();const q=document.getElementById("q");q.oninput({target:q})}
+const L=[["bn.bengali","বাংলা"],["ar.muyassar","العربية"],["en.sahih","English"],["ur.jalandhry","اردو"],["fa.makarem","فارسی"],["fr.hamidullah","Français"],["id.indonesian","Indonesia"],["tr.diyanet","Türkçe"],["ru.kuliev","Русский"],["es.cortes","Español"],["zh.jian","简体中文"],["ms.basmeih","Melayu"],["de.aburida","Deutsch"],["it.piccardo","Italiano"],["nl.keyzer","Nederlands"],["pt.elhayek","Português"],["sq.ahmeti","Shqip"],["sw.barwani","Kiswahili"],["vi.hassan","Tiếng Việt"],["th.thai","ภาษาไทย"],["none","Arabic only"]];
+var lang="bn.bengali",cur=null;try{lang=localStorage.getItem("nl")||lang}catch(e){}
+const lp=document.getElementById("lp"),lb=document.getElementById("lb");
+const lname=()=>(L.find(l=>l[0]===lang)||L[0])[1];
+function drawL(){lb.textContent=tt().lg+": "+lname();lp.innerHTML="";L.forEach(l=>{const b=document.createElement("button");b.textContent=l[1];if(l[0]===lang)b.className="a";b.onclick=()=>{lang=l[0];try{localStorage.setItem("nl",lang)}catch(e){}lp.classList.remove("on");applyUI();if(m.classList.contains("on")&&cur)openS(cur)};lp.appendChild(b)})}
+const tgL=e=>{e.stopPropagation();lp.classList.remove("up");lp.classList.toggle("on")};
+lb.onclick=tgL;document.getElementById("lb3").onclick=e=>{e.stopPropagation();lp.classList.add("up");lp.classList.toggle("on")};document.getElementById("lb2").onclick=tgL;
+document.addEventListener("click",e=>{if(!lp.contains(e.target))lp.classList.remove("on")});
+const RTL=["ur.jalandhry","fa.makarem","ar.muyassar"],esc=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+async function openS(s){cur=s;const head=`<h2>${s.name}</h2><p class="sub">${bn(s.c)} ${tt().ay}</p>`;r.innerHTML=head+'<p class="note">'+tt().ld+'</p>';m.classList.add("on");m.scrollTop=0;document.body.style.overflow="hidden";
+try{const ed=lang==="none"?"":","+lang,res=await fetch(`https://api.alquran.cloud/v1/surah/${s.n}/editions/quran-uthmani${ed}`);if(!res.ok)throw 0;const j=await res.json(),a=j.data[0].ayahs,t=j.data[1]&&j.data[1].ayahs;if(cur!==s)return;
+r.innerHTML=head+a.map((y,i)=>`<div class="ay" style="animation-delay:${Math.min(.15+i*.05,1)}s">${esc(y.text)}<span class="no">${bn(y.numberInSurah)}</span></div>`+(t?`<p class="tr" dir="${RTL.includes(lang)?"rtl":"ltr"}">${esc(t[i].text)}</p>`:"")).join("")}
+catch(e){if(cur!==s)return;r.innerHTML=head+(s.n==1?FATIHA.map((a,i)=>`<div class="ay" style="animation-delay:${.3+i*.45}s">${a}</div>`).join(""):"")+'<p class="note">'+tt().er+'</p>'}
+document.getElementById("x").focus()}
 function closeS(){m.classList.remove("on");document.body.style.overflow=""}
-document.getElementById("x").onclick=closeS;addEventListener("keydown",e=>e.key==="Escape"&&closeS());
+applyUI();document.getElementById("x").onclick=closeS;addEventListener("keydown",e=>e.key==="Escape"&&closeS());
 document.querySelector("[data-open]").addEventListener("click",()=>setTimeout(()=>openS(D[0]),300));
 const g=document.getElementById("glow");addEventListener("pointermove",e=>{g.style.left=e.clientX+"px";g.style.top=e.clientY+"px"});
 const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const t=+e.target.dataset.to,t0=performance.now();(function f(n){const p=Math.min((n-t0)/1600,1);e.target.textContent=bn(Math.round(t*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(f)})(t0)}),{threshold:.6});
 document.querySelectorAll("[data-to]").forEach(el=>cio.observe(el));
-document.getElementById("tg").onclick=()=>{const d=document.documentElement,l=matchMedia("(prefers-color-scheme:light)").matches,cur=d.dataset.theme||(l?"light":"dark");d.dataset.theme=cur==="dark"?"light":"dark"};
+const toggleTheme=()=>{const d=document.documentElement,l=matchMedia("(prefers-color-scheme:light)").matches,cur=d.dataset.theme||(l?"light":"dark");d.dataset.theme=cur==="dark"?"light":"dark"};document.querySelectorAll(".tgl").forEach(b=>b.onclick=toggleTheme);
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
 </body>
