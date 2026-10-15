@@ -10,3 +10,9 @@ Static site (index.html) + PWA + auto APK build via GitHub Actions.
 3. `manifest.webmanifest` → `name`, `short_name`
 4. `capacitor.config.json` → `appName` (APK-র নাম)
 5. `index.html` → `<title>` ট্যাগ
+
+## Signed APK (Release)
+GitHub > Settings > Secrets and variables > Actions এ ৪টি secret দিন: KEYSTORE_BASE64, KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD।
+এরপর main-এ push করলেই signed `al-quran.apk` বানিয়ে Releases পাতায় দেয়:
+https://github.com/shahneilkhan/quran.github.io/releases/latest/download/al-quran.apk
+keystore ফাইল কখনো repo-তে রাখবেন না।
