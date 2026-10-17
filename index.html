@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#06201a">
+<meta name="theme-color" content="#04281c">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -18,10 +18,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://api.alquran.cloud" crossorigin><link rel="dns-prefetch" href="https://api.quran.com"><link rel="dns-prefetch" href="https://cdn.islamic.network">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
-:root{--bg:#06201a;--bg2:#0b3126;--ink:#ecf7f0;--mute:#8db8a6;--gold:#34d399;--teal:#86efac;--line:rgba(52,211,153,.22);--card:rgba(255,255,255,.04);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#04281c;--bg2:#0b3126;--ink:#ecf7f0;--mute:#8db8a6;--gold:#34d399;--teal:#86efac;--line:rgba(52,211,153,.22);--card:rgba(255,255,255,.04);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f1f8f3;--bg2:#dff0e5;--ink:#0a2a1f;--mute:#4a6b5c;--gold:#0b7a52;--teal:#0a8f63;--line:rgba(11,122,82,.3);--card:rgba(10,42,31,.05)}}
 :root[data-theme="light"]{--bg:#f1f8f3;--bg2:#dff0e5;--ink:#0a2a1f;--mute:#4a6b5c;--gold:#0b7a52;--teal:#0a8f63;--line:rgba(11,122,82,.3);--card:rgba(10,42,31,.05)}
-:root[data-theme="dark"]{--bg:#06201a;--bg2:#0b3126;--ink:#ecf7f0;--mute:#8db8a6;--gold:#34d399;--teal:#86efac;--line:rgba(52,211,153,.22);--card:rgba(255,255,255,.04)}
+:root[data-theme="dark"]{--bg:#04281c;--bg2:#0b3126;--ink:#ecf7f0;--mute:#8db8a6;--gold:#34d399;--teal:#86efac;--line:rgba(52,211,153,.22);--card:rgba(255,255,255,.04)}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:120px}
 body{background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;line-height:1.7;overflow-x:hidden}
@@ -260,7 +260,7 @@ function opM(){stopA();m.classList.remove("kids");cur=null;curPlan=null;m.classL
 async function showPray(){opM();lv=showPray;const t=tt();r.innerHTML=`<h2>${t.pt}</h2><p class="sub">${esc(PS.loc)}</p><p class="note">${t.ld}</p>`;await loadPT();const day=PD&&PD.days[dk(new Date())];const opt=(a,v)=>a.map(x=>`<option value="${x[0]}"${x[0]==v?" selected":""}>${x[1]}</option>`).join("");
 r.innerHTML=`<h2>${t.pt}</h2><p class="sub">${esc(PS.loc)}</p>`+(day?["Fajr","Sunrise","Dhuhr","Asr","Maghrib","Isha"].map(n=>`<div class="sc in prow"><span><b>${pn(n)}</b></span><span class="ar" style="direction:ltr">${fmtT(at(new Date(),day[n]))}</span></div>`).join(""):`<p class="note">${t.er}</p>`)+`<h3 class="sh3">${t.nf}</h3><div class="ctl"><button class="btn" id="nfq">${PS.nf?"✓ ":""}${t.nf}</button><label>${t.bf} <select class="sel" id="pl">${opt([[0,"0"],[5,"5"],[10,"10"],[15,"15"],[30,"30"]],PS.lead)}</select></label></div>${LNp()?"":`<p class="note">${t.nfw}</p>`}<h3 class="sh3">${t.mt}</h3><div class="ctl"><button class="btn o" id="gp">📍 ${t.gp}</button></div><div class="ctl"><select class="sel" id="pm" aria-label="${t.mt}">${opt([[1,"Karachi"],[3,"Muslim World League"],[2,"ISNA"],[4,"Umm al-Qura"],[5,"Egyptian"]],PS.m)}</select><select class="sel" id="pz" aria-label="${t.mz}">${opt([[1,t.hn],[0,t.sf]],PS.sc)}</select></div><p class="note">${t.pw}</p>`}
 function showSet(){opM();lv=showSet;const t=tt();r.innerHTML=`<h2>⚙ ${t.st}</h2><h3 class="sh3">${t.fz}</h3><div class="ctl"><button class="btn o" id="fm">A−</button><span id="fv">${Math.round(FZ*100)}%</span><button class="btn o" id="fp">A+</button></div><h3 class="sh3">${t.pt}</h3><div class="ctl"><button class="btn" id="toPray">${t.pt}</button></div>`}
-async function card(txt,tr,ref){try{await document.fonts.load("60px Amiri")}catch(e){}const W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d"),g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,"#0b3126");g.addColorStop(1,"#06201a");x.fillStyle=g;x.fillRect(0,0,W,H);x.strokeStyle="#34d399";x.lineWidth=3;x.strokeRect(40,40,W-80,H-80);x.lineWidth=1;x.strokeRect(58,58,W-116,H-116);
+async function card(txt,tr,ref){try{await document.fonts.load("60px Amiri")}catch(e){}const W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d"),g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,"#0b3126");g.addColorStop(1,"#04281c");x.fillStyle=g;x.fillRect(0,0,W,H);x.strokeStyle="#34d399";x.lineWidth=3;x.strokeRect(40,40,W-80,H-80);x.lineWidth=1;x.strokeRect(58,58,W-116,H-116);
 const wrap=(t,f,max)=>{x.font=f;const L=[];let l="";for(const w of t.split(" ")){const n=l?l+" "+w:w;if(x.measureText(n).width>max&&l){L.push(l);l=w}else l=n}if(l)L.push(l);return L};x.textAlign="center";x.textBaseline="top";
 const fs=txt.length<80?70:txt.length<200?54:40,A=wrap(txt,fs+"px Amiri",W-220);x.direction="rtl";x.fillStyle="#ecf7f0";x.font=fs+"px Amiri";let y=150;A.forEach(l=>{x.fillText(l,W/2,y);y+=fs*1.9});
 if(tr){const f2=tr.length<200?32:26,T=wrap(tr,f2+'px "Hind Siliguri",sans-serif',W-220);x.direction="ltr";x.fillStyle="#8db8a6";x.font=f2+'px "Hind Siliguri",sans-serif';y+=30;T.forEach(l=>{if(y<H-230){x.fillText(l,W/2,y);y+=f2*1.6}})}
