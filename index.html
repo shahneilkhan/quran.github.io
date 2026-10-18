@@ -11,9 +11,9 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="Quraanly">
 <meta property="og:title" content="Quraanly — Read, Listen &amp; Understand">
 <meta property="og:description" content="Free Quran reader with 20+ translations, recitation, prayer times and a kids corner.">
-<meta property="og:url" content="https://shahneilkhan.snkbp.com/quran.github.io/"><meta property="og:image" content="https://shahneilkhan.snkbp.com/quran.github.io/og.png">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://shahneilkhan.snkbp.com/quran.github.io/og.png">
-<link rel="canonical" href="https://shahneilkhan.snkbp.com/quran.github.io/">
+<meta property="og:url" content="https://alquran.snkbp.com/"><meta property="og:image" content="https://alquran.snkbp.com/og.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://alquran.snkbp.com/og.png">
+<link rel="canonical" href="https://alquran.snkbp.com/">
 <title>Quraanly — কুরআন পড়ুন, শুনুন, বুঝুন</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://api.alquran.cloud" crossorigin><link rel="dns-prefetch" href="https://api.quran.com"><link rel="dns-prefetch" href="https://cdn.islamic.network">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
@@ -141,14 +141,10 @@ nav{flex-wrap:wrap}.pbar{order:3;flex:1 1 100%;background:none;border:0;border-t
 <body>
 <nav><a class="logo" href="#top">قرآنلي</a><div><a href="#surahs" data-i="s">সূরা</a><a href="#plans" data-i="p">লার্নিং প্ল্যান</a><a href="#app" data-i="ap">App</a><button class="tg" id="stb" aria-label="Settings">⚙</button><button class="tg" id="bmb"><span data-i="bk">Bookmarks</span></button><button class="tg" id="lb" aria-label="ভাষা বদলান">ভাষা: বাংলা</button><button class="tg tgl" id="tg" aria-label="থিম বদলান"><span data-i="th">থিম</span></button></div><button class="pbar" id="pbar" hidden></button></nav>
 
-<section class="hero" id="top">
-<div class="stars" aria-hidden="true"><svg viewBox="0 0 400 400"><g class="s1" style="transform-origin:200px 200px"><rect class="dr" pathLength="1" x="90" y="90" width="220" height="220"/><rect class="dr" pathLength="1" x="90" y="90" width="220" height="220" transform="rotate(45 200 200)"/></g><g class="s2"><rect class="dr" pathLength="1" x="130" y="130" width="140" height="140"/><rect class="dr" pathLength="1" x="130" y="130" width="140" height="140" transform="rotate(45 200 200)"/></g></svg></div>
-<div>
-<div class="bism">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
-<h1 data-i="h">কুরআন পড়ুন, শুনুন, বুঝুন</h1>
-<p data-i="d">সব ভাষায়, বিনামূল্যে।</p>
-<div class="cta"><a class="btn" href="#surahs" data-open="1" data-i="go">পড়া শুরু করুন</a><a class="btn o" href="#" id="cont" hidden data-i="ct">Continue</a><a class="btn o" href="#" id="kidsb" data-i="kd">Kids</a><a class="btn o" href="#plans" data-i="pl">প্ল্যান দেখুন</a></div>
-</div>
+<section class="hero" id="top" style="padding:0;min-height:0;display:block">
+<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-i="h">কুরআন পড়ুন, শুনুন, বুঝুন</h1>
+<img src="hero.webp" alt="কুরআন পড়ুন, শুনুন এবং বুঝুন" width="1376" height="768" fetchpriority="high" style="display:block;width:100%;height:auto;max-height:92vh;object-fit:cover;object-position:left center">
+<div class="cta" style="margin:0;padding:26px 5vw;animation:none"><a class="btn" href="#surahs" data-open="1" data-i="go">পড়া শুরু করুন</a><a class="btn o" href="#" id="cont" hidden data-i="ct">Continue</a><a class="btn o" href="#" id="kidsb" data-i="kd">Kids</a><a class="btn o" href="#plans" data-i="pl">প্ল্যান দেখুন</a></div>
 </section>
 
 <div class="stats"><div><b data-to="114">0</b><span data-i="n1">সূরা</span></div><div><b data-to="6236">0</b><span data-i="n2">আয়াত</span></div><div><b data-to="30">0</b><span data-i="n3">পারা</span></div></div>
@@ -229,7 +225,7 @@ const svB=()=>{try{localStorage.setItem("nbm",JSON.stringify(bm))}catch(e){}};
 const PL=[{id:"fat",s:1,days:[[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]]},{id:"mulk",s:67,days:Array.from({length:30},(_,i)=>[i+1,i+1])},{id:"kahf",s:18,days:[[9,26],[32,44],[60,82],[83,98]]},{id:"yasin",s:36,days:[[1,12],[13,32],[33,47],[48,68],[69,83]]},{id:"ikhlas",s:112,days:[[1,1],[2,2],[3,3],[4,4]]}];
 const PT={en:["The message of Al-Fatihah","30 days with Al-Mulk","Four stories of Al-Kahf","Ya-Sin: faith, mercy, accountability","Al-Ikhlas: the oneness of Allah"],bn:["আল-ফাতিহার বার্তা","সূরা আল-মুলকের সাথে ৩০ দিন","সূরা আল-কাহফের ৪টি গল্প","ইয়াসিন: ঈমান, রহমত ও জবাবদিহি","আল-ইখলাস: আল্লাহর একত্ব"],ar:["رسالة الفاتحة","٣٠ يومًا مع سورة الملك","قصص الكهف الأربع","يس: الإيمان والرحمة والمساءلة","الإخلاص: توحيد الله"],ur:["سورۃ الفاتحہ کا پیغام","سورۃ الملک کے ساتھ ۳۰ دن","سورۃ الکہف کی چار کہانیاں","یٰسٓ: ایمان، رحمت اور جواب دہی","الاخلاص: اللہ کی وحدانیت"],fr:["Le message d'Al-Fatiha","30 jours avec Al-Mulk","Les quatre récits d'Al-Kahf","Ya-Sin : foi, miséricorde, responsabilité","Al-Ikhlas : l'unicité d'Allah"],id:["Pesan Al-Fatihah","30 hari bersama Al-Mulk","Empat kisah Al-Kahf","Ya-Sin: iman, rahmat, pertanggungjawaban","Al-Ikhlas: keesaan Allah"],tr:["Fâtiha'nın mesajı","Mülk ile 30 gün","Kehf'in dört kıssası","Yâsîn: iman, rahmet, hesap","İhlâs: Allah'ın birliği"],es:["El mensaje de Al-Fatiha","30 días con Al-Mulk","Las cuatro historias de Al-Kahf","Ya-Sin: fe, misericordia, rendición de cuentas","Al-Ikhlas: la unicidad de Allah"],hi:["अल-फ़ातिहा का संदेश","सूरह अल-मुल्क के साथ 30 दिन","सूरह अल-कहफ़ की चार कहानियाँ","यासीन: ईमान, रहमत और जवाबदेही","अल-इख़लास: अल्लाह की एकता"]};
 const pt=i=>(PT[(lang||"bn").split(".")[0]]||PT.en)[i];
-const BRAND={name:"Quraanly",logo:"قرآنلي",url:"shahneilkhan.snkbp.com/quran.github.io"};
+const BRAND={name:"Quraanly",logo:"قرآنلي",url:"alquran.snkbp.com"};
 var ca=[],curPlan=null,lv=null;
 function renderPlans(){const t=tt(),el=document.getElementById("pl");el.innerHTML=PL.map((p,i)=>`<button class="plan" data-p="${i}"><small>${p.days.length} ${t.dys}</small><span class="pt">${pt(i)}</span></button>`).join("");el.onclick=e=>{const b=e.target.closest("[data-p]");b&&showPlan(+b.dataset.p)}}
 const getPg=()=>{try{return JSON.parse(localStorage.getItem("npg")||"{}")}catch(e){return{}}};
@@ -340,7 +336,7 @@ const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retur
 document.querySelectorAll("[data-to]").forEach(el=>cio.observe(el));
 const toggleTheme=()=>{const d=document.documentElement,l=matchMedia("(prefers-color-scheme:light)").matches,cur=d.dataset.theme||(l?"light":"dark");d.dataset.theme=cur==="dark"?"light":"dark"};document.querySelectorAll(".tgl").forEach(b=>b.onclick=toggleTheme);
 document.getElementById("bmb").onclick=showBm;const ct=document.getElementById("cont");ct.hidden=!last;ct.onclick=e=>{e.preventDefault();openS(D[last-1])};
-const bs=document.querySelector(".bism");bs.innerHTML=bs.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w" style="animation-delay:${.05+i*.12}s">${w}</span>`).join(" ");
+const bs=document.querySelector(".bism");if(bs)bs.innerHTML=bs.textContent.trim().split(/\s+/).map((w,i)=>`<span class="w" style="animation-delay:${.05+i*.12}s">${w}</span>`).join(" ");
 if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&matchMedia("(hover:hover)").matches){grid.addEventListener("pointermove",e=>{const c=e.target.closest(".sc");if(!c)return;const b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.style.transform=`perspective(700px) rotateX(${-y*10}deg) rotateY(${x*12}deg) translateY(-4px)`;c.style.setProperty("--gx",(x+.5)*100+"%");c.style.setProperty("--gy",(y+.5)*100+"%")});grid.addEventListener("pointerout",e=>{const c=e.target.closest(".sc");if(c)c.style.transform=""})}
 document.getElementById("lrn").onclick=showLearn;document.getElementById("gde").onclick=showGuide;document.getElementById("kidsb").onclick=e=>{e.preventDefault();kidsHome()};document.getElementById("kdf").onclick=e=>{e.preventDefault();kidsHome()};applyFz();document.getElementById("stb").onclick=showSet;document.getElementById("pbar").onclick=showPray;setTimeout(()=>loadPT().then(()=>{tickBar();sched();armWeb()}),1500);setInterval(tickBar,20000);
 if(window.Capacitor){const ap=document.getElementById("app");if(ap)ap.hidden=true}
@@ -398,6 +394,9 @@ r.innerHTML=`<div class="cine" style="--g:${s.g}">${bar(n,p)}${dust()}<button cl
 let sx=0;r.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
 r.addEventListener("touchend",e=>{if(!r.querySelector(".cine"))return;const dx=e.changedTouches[0].clientX-sx,n=STORIES[ST.i].pg.length;if(dx<-60&&ST.p<n)kAct("tp");else if(dx>60&&ST.p>0)kAct("tb")});
 
+STORIES.push(
+{id:"dawud",e:"🪨",ti:["দাউদ (আ.) ও জালুত","Dawud and Jalut"],g:"linear-gradient(160deg,#ffb27a,#7a2b3a)",ref:[2,250,251],pg:[["⚔️","একদিন মুমিনদের সামনে এক বিশাল শক্তিশালী বাহিনী এল। তাদের নেতা ছিল জালুত।"],["🤲","মুমিনরা ভয় পেল না। তারা দোয়া করল, ‘হে রব, আমাদের ধৈর্য দিন আর আমাদের অটল রাখুন।’"],["🧑‍🦱","দাউদ (আ.) তখন যুবক। আল্লাহর সাহায্যে তিনি জালুতকে পরাজিত করলেন।"],["👑","পরে আল্লাহ তাঁকে রাজ্য আর হিকমত দান করলেন।"]],ls:"শক্তি বড় কথা নয়। আল্লাহর সাহায্যই আসল।"},
+{id:"ayyub",e:"🌿",ti:["আইয়ুব (আ.)-এর ধৈর্য","Ayyub's Patience"],g:"linear-gradient(160deg,#a8e6a1,#27604a)",ref:[21,83,84],pg:[["🏡","নবী আইয়ুব (আ.)-এর ওপর কঠিন কষ্ট নেমে এল।"],["🕊️","তবু তিনি অভিযোগ করেননি। তিনি ধৈর্য ধরলেন।"],["🤲","তিনি আল্লাহকে ডেকে বললেন, ‘আমাকে কষ্ট ছুঁয়েছে, আর আপনি সবচেয়ে বড় দয়ালু।’"],["🌈💚","আল্লাহ তাঁর ডাক শুনলেন। তিনি তাঁর কষ্ট দূর করলেন আর রহমত দিলেন।"]],ls:"কষ্টের সময় ধৈর্য ধরে আল্লাহকে ডাকলে তিনি রহমত দেন।"});
 applyUI();
 })();
 /* Quraanly add-on: word-by-word meaning. Load AFTER quraanly-stories.js */
