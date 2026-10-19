@@ -251,6 +251,30 @@ footer{background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--gol
 .read.playing .ay:not(.on),.read.playing .ay:not(.on)+.tr{opacity:.55}
 @media (max-width:560px){.read .ay{padding:44px 14px 68px}.read .tr{padding:16px 16px 20px}}
 body[style*="overflow: hidden"] #top-btn{display:none}
+/* step2: surah list */
+.chips{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:-8px 0 26px}
+.chips button{border:1px solid var(--line);background:linear-gradient(160deg,var(--card),transparent);color:var(--ink);border-radius:99px;padding:7px 18px;transition:all .3s}
+.chips button:hover{border-color:var(--gold);transform:translateY(-2px)}
+.chips button.on{background:linear-gradient(120deg,var(--gold),#f0d58f);color:#1a1530;border-color:var(--gold);font-weight:600;box-shadow:0 10px 24px -12px var(--gold)}
+.chips .cnt{margin-inline-start:auto;color:var(--mute);font-size:.9rem}
+.sc .tp{display:inline-block;margin-inline-start:8px;padding:0 9px;border-radius:99px;font-size:.72rem;border:1px solid var(--line);color:var(--gold);vertical-align:middle}
+.sc .tp.md{color:var(--teal)}
+.sc.lr{border-color:var(--gold)}.sc.lr::after{content:"●";position:absolute;top:10px;right:12px;font-size:.6rem;color:var(--gold);animation:hxd 1.8s infinite}
+.empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:40px 0}
+.sc .ar{white-space:nowrap}.sc>span:nth-child(2){min-width:0}
+/* step3: settings, bookmarks, languages */
+.read>.sub:empty{display:none}
+.sc>.ar{margin-left:auto;margin-right:0}
+.stc{max-width:520px;margin:0 auto 16px;padding:20px 22px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(155deg,color-mix(in srgb,var(--bg2) 80%,transparent),transparent);backdrop-filter:blur(8px)}
+.stc .sh3{margin:0 0 12px;font-size:1.15rem}.stc .ctl{background:none;border:0;padding:0;margin:0 auto}.stc .btn{width:100%;max-width:340px}
+.stp{font-family:Amiri,serif;direction:rtl;font-size:calc(2.1rem*var(--fz,1));line-height:2;color:var(--ink);padding:10px 8px;margin-bottom:12px;border-radius:16px;background:color-mix(in srgb,var(--gold) 8%,transparent);border:1px dashed var(--line);transition:font-size .25s}
+#fv{min-width:64px;font-weight:600;color:var(--gold);font-size:1.15rem}
+.bmr{position:relative}.bmr .sc{padding-inline-end:58px}
+.bmx{position:absolute;top:50%;right:14px;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--mute);font-size:1rem;line-height:1;transition:all .25s}.bmx:hover{color:#e5484d;border-color:#e5484d;transform:translateY(-50%) rotate(90deg)}
+.emp{text-align:center;color:var(--mute);padding:50px 10px}.emp b{display:block;font-size:3.4rem;color:var(--gold);margin-bottom:6px;animation:hxf 4s ease-in-out infinite}
+.read #lq{position:sticky;top:12px;z-index:3;box-shadow:0 14px 30px -18px rgba(0,0,0,.5)}
+.sc.cur{border-color:var(--gold);background:linear-gradient(155deg,color-mix(in srgb,var(--gold) 16%,transparent),transparent)}
+.stc .ctl{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:nowrap}.stc .ctl .btn{width:auto;min-width:88px}
 </style>
 </head>
 <body>
@@ -591,6 +615,40 @@ let tk=false;function up(){tk=false;const m=document.documentElement.scrollHeigh
 addEventListener("scroll",()=>{if(!tk){tk=true;requestAnimationFrame(up)}},{passive:true});up();
 const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in2");io2.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll("section:not(.hero) h2,section:not(.hero) .sub,.search,.plans,.stats>div,.lc,#dev .btn,#app .btn,#app .steps,#app .note").forEach((el,i)=>{el.classList.add("rv");el.style.transitionDelay=(i%4)*90+"ms";io2.observe(el)});
+})();
+</script>
+<script>
+(function(){
+const MED=new Set([2,3,4,5,8,9,13,22,24,33,47,48,49,55,57,58,59,60,61,62,63,64,65,66,76,98,99,110]);
+const LB={bn:{all:"সব",mk:"মক্কী",md:"মাদানী",sh:"ছোট সূরা",no:"কোনো সূরা পাওয়া যায়নি",c:"টি সূরা"},en:{all:"All",mk:"Meccan",md:"Medinan",sh:"Short",no:"No surah found",c:" surahs"},ar:{all:"الكل",mk:"مكية",md:"مدنية",sh:"قصيرة",no:"لا توجد سورة",c:" سورة"},ur:{all:"سب",mk:"مکی",md:"مدنی",sh:"چھوٹی",no:"کوئی سورت نہیں ملی",c:" سورتیں"},hi:{all:"सभी",mk:"मक्की",md:"मदनी",sh:"छोटी",no:"कोई सूरह नहीं मिली",c:" सूरह"}};
+const lb=()=>LB[(lang||"bn").split(".")[0]]||LB.en;
+let CH="all",shown=114;
+const q=document.getElementById("q"),box=document.createElement("div");box.className="chips";q.insertAdjacentElement("afterend",box);
+const ok=s=>CH==="all"||(CH==="md"&&MED.has(s.n))||(CH==="mk"&&!MED.has(s.n))||(CH==="sh"&&s.c<=20);
+function chips(){const t=lb();box.innerHTML=["all","mk","md","sh"].map(k=>'<button class="'+(CH===k?"on":"")+'" data-ch="'+k+'">'+t[k]+"</button>").join("")+'<span class="cnt">'+bn(shown)+t.c+"</span>"}
+const _r=render;render=function(list){const t=lb();list=list.filter(ok);shown=list.length;_r(list);if(!list.length)grid.innerHTML='<p class="empty">'+t.no+"</p>";
+[].forEach.call(grid.children,(b,i)=>{const s=list[i];if(!s)return;const sm=b.querySelector("small");if(sm){const md=MED.has(s.n);sm.insertAdjacentHTML("beforeend",'<span class="tp'+(md?" md":"")+'">'+(md?t.md:t.mk)+"</span>")}if(s.n===last)b.classList.add("lr")});chips()};
+box.onclick=e=>{const b=e.target.closest("[data-ch]");if(!b)return;CH=b.dataset.ch;q.oninput()};
+q.oninput=()=>{const raw=q.value.trim().toLowerCase(),v=raw.replace(/[^a-z0-9]/g,"");render(D.filter(s=>!v||s.name.toLowerCase().replace(/[^a-z0-9]/g,"").includes(v)||String(s.n)===raw))};
+q.oninput();
+})();
+</script>
+<script>
+(function(){
+const rr=document.getElementById("r");
+showSet=function(){opM();lv=showSet;const t=tt();
+rr.innerHTML='<h2>⚙ '+t.st+'</h2><div class="stc"><h3 class="sh3">'+t.fz+'</h3><div class="stp">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ</div><div class="ctl"><button class="btn o" id="fm">A−</button><span id="fv">'+Math.round(FZ*100)+'%</span><button class="btn o" id="fp">A+</button></div></div>'
++'<div class="stc"><h3 class="sh3">'+t.th+'</h3><button class="btn o" id="s-theme">🌗 '+t.th+'</button></div>'
++'<div class="stc"><h3 class="sh3">'+t.lg+'</h3><button class="btn o" id="s-lang">🌐 '+lname()+'</button></div>'
++'<div class="stc"><h3 class="sh3">'+t.pt+'</h3><button class="btn" id="toPray">🕌 '+t.pt+'</button></div>'};
+document.getElementById("stb").onclick=showSet;
+showBm=function(){stopA();cur=null;curPlan=null;lv=showBm;m.classList.add("on");document.body.style.overflow="hidden";m.scrollTop=0;const t=tt();
+rr.innerHTML='<h2>★ '+t.bk+'</h2><p class="sub">'+(bm.length?bn(bm.length):"")+'</p>'+(bm.length?bm.map(v=>{const a=v.split(":").map(Number),s=D[a[0]-1];return '<div class="bmr"><button class="sc in" data-go="'+v+'"><span class="n"><i>'+bn(a[0])+'</i></span><span><b>'+s.name+'</b><small>'+t.ay+" "+bn(a[1])+'</small></span><span class="ar">'+AR[a[0]-1]+'</span></button><button class="bmx" data-bd="'+v+'" aria-label="remove">✕</button></div>'}).join(""):'<div class="emp"><b>☆</b>'+t.nb+"</div>")};
+document.getElementById("bmb").onclick=showBm;
+rr.addEventListener("click",e=>{const d=e.target.closest("[data-bd]");if(d){bm=bm.filter(x=>x!==d.dataset.bd);svB();showBm();return}
+if(e.target.closest("#s-theme")){toggleTheme();return}
+if(e.target.closest("#s-lang")){showLangs();return}});
+const _d=drawLangs;drawLangs=function(v){_d(v);const c=document.querySelector('#ll [data-ed="'+lang+'"]');if(c){c.classList.add("cur");const a=document.createElement("span");a.className="ar";a.textContent="✓";c.appendChild(a)}};
 })();
 </script>
 </body>
