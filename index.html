@@ -324,6 +324,21 @@ html[lang="bn"] #app .steps li::before{content:counter(s,bengali)}
 #app .note{max-width:none!important;margin:14px 0;padding:18px 22px 18px 58px;position:relative;border:1px solid var(--line);border-radius:20px;background:linear-gradient(155deg,var(--card),transparent)}
 #app .note::before{position:absolute;inset-inline-start:18px;top:16px;font-size:1.5rem}
 #app [data-i="an"]::before{content:"🛡️"}#app [data-i="ai"]::before{content:"🍎"}
+/* step6: loading, error, learn */
+.skl{max-width:820px;margin:20px auto 0;display:grid;gap:18px}
+.skc{border:1px solid var(--line);border-radius:26px;padding:34px 24px 26px;background:linear-gradient(170deg,color-mix(in srgb,var(--bg2) 85%,transparent),transparent);display:grid;gap:16px;justify-items:center}
+.sk{display:block;border-radius:12px;background:linear-gradient(100deg,var(--card) 30%,color-mix(in srgb,var(--gold) 22%,transparent) 50%,var(--card) 70%);background-size:300% 100%;animation:skm 1.6s ease-in-out infinite}
+@keyframes skm{from{background-position:120% 0}to{background-position:-120% 0}}
+.sk.a{width:min(72%,520px);height:42px}.sk.b{width:min(52%,360px);height:42px}.sk.c{width:min(80%,560px);height:16px;margin-top:8px}
+.skc:nth-child(2) .sk.a{width:min(60%,440px)}.skc:nth-child(3) .sk.a{width:min(80%,560px)}
+.erc{max-width:460px;margin:30px auto;padding:32px 26px;text-align:center;border:1px solid var(--line);border-radius:26px;background:linear-gradient(160deg,color-mix(in srgb,var(--bg2) 85%,transparent),transparent)}
+.erc b{display:block;font-size:2.8rem;margin-bottom:6px;animation:hxf 3s ease-in-out infinite}.erc p{color:var(--mute);margin-bottom:18px}
+.read>.note[style*="0 0 18px"]{margin:0 auto 22px!important;max-width:640px;padding:14px 20px 14px 52px;position:relative;text-align:start;border:1px solid var(--gold);border-radius:18px;background:color-mix(in srgb,var(--gold) 9%,transparent);color:var(--ink)}
+.read>.note[style*="0 0 18px"]::before{content:"ℹ️";position:absolute;inset-inline-start:16px;top:12px;font-size:1.3rem}
+.lc{position:relative;border-inline-start:3px solid var(--gold);transition:transform .3s,box-shadow .3s}.lc:hover{transform:translateY(-4px);box-shadow:0 22px 44px -28px var(--gold)}
+.lc .ex{margin:14px 0 6px;padding:16px 10px 10px;border-radius:18px;border:1px dashed var(--line);background:radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--gold) 18%,transparent),transparent 70%);font-size:2.9rem;text-shadow:0 0 24px color-mix(in srgb,var(--gold) 45%,transparent)}
+.lc small{display:inline-block!important;margin:0 auto;padding:1px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);letter-spacing:.06em}
+.lc{text-align:start}.lc .ex,.lc>small{text-align:center}.lc>small{display:block!important;width:max-content;margin-inline:auto}
 </style>
 </head>
 <body>
@@ -711,6 +726,15 @@ const list=["Fajr","Dhuhr","Asr","Maghrib","Isha"].map(n=>at(new Date(),day[n]))
 card.innerHTML="<small>"+t.nx+"</small><b>"+pn(nx.n)+'</b><div class="pt">'+fmtT(nx.w)+" · "+(hh?bn(hh)+t.hr+" ":"")+bn(mm)+t.mi+'</div><div class="pbr"><i style="width:'+pc+'%"></i></div>'}
 const _sp=showPray;showPray=async function(){await _sp();lv=showPray;deco();clearInterval(tm);tm=setInterval(()=>{if(!document.getElementById("pcd")){clearInterval(tm);return}deco()},20000)};
 document.getElementById("pbar").onclick=showPray;
+})();
+</script>
+<script>
+(function(){const rr=document.getElementById("r");
+const skel=()=>'<div class="skl">'+[0,1,2].map(()=>'<div class="skc"><i class="sk a"></i><i class="sk b"></i><i class="sk c"></i></div>').join("")+"</div>";
+const err=t=>'<div class="erc"><b>📡</b><p>'+t+'</p><button class="btn" data-rt="1">↻</button></div>';
+let busy=false;
+new MutationObserver(()=>{if(busy)return;busy=true;try{const t=tt();[].forEach.call(rr.querySelectorAll("p.note"),p=>{if(p.dataset.d)return;const x=p.textContent.trim();if(x===t.ld){p.dataset.d=1;p.outerHTML=skel()}else if(x===t.er){p.dataset.d=1;p.outerHTML=err(t.er)}})}finally{busy=false}}).observe(rr,{childList:true,subtree:true});
+rr.addEventListener("click",e=>{if(!e.target.closest("[data-rt]"))return;if(cur)openS.apply(null,ca);else if(lv)lv()});
 })();
 </script>
 </body>
