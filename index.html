@@ -306,6 +306,24 @@ body[style*="overflow: hidden"] #top-btn{display:none}
 .modal.kids .ctl[style*="margin-top"] .btn.o{opacity:.8;font-size:.9rem}
 @media (prefers-reduced-motion:reduce){.modal.kids::before,.modal.kids::after,.modal.kids .kc>span:first-child{animation:none}}
 .modal.kids::before,.modal.kids::after{z-index:-1}
+/* step5: prayer page + app section */
+.pcd{max-width:520px;margin:0 auto 22px;padding:26px 24px 22px;border-radius:28px;border:1px solid var(--gold);background:radial-gradient(circle at 85% 0%,color-mix(in srgb,var(--gold) 30%,transparent),transparent 55%),linear-gradient(160deg,color-mix(in srgb,var(--bg2) 90%,transparent),transparent);box-shadow:0 30px 60px -34px var(--gold);text-align:center}
+.pcd small{color:var(--mute);letter-spacing:.04em}.pcd b{display:block;font-family:Amiri,serif;font-size:2.6rem;line-height:1.2;color:var(--gold)}
+.pcd .pt{font-size:1.5rem;font-weight:600;margin:2px 0 14px}.pcd .pbr{height:8px;border-radius:9px;background:var(--line);overflow:hidden}.pcd .pbr i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--gold),#f0d58f);transition:width 1s}
+.prow{transition:transform .3s,border-color .3s,opacity .3s}.prow:hover{transform:translateX(4px)}
+.prow>span:first-child b{font-weight:500}.prow>span:first-child b::before{content:attr(data-e);display:inline-block;width:2em;margin-inline-end:6px;text-align:center}
+.prow.nxt{border-color:var(--gold);background:linear-gradient(120deg,color-mix(in srgb,var(--gold) 20%,transparent),transparent);box-shadow:0 18px 40px -26px var(--gold)}
+.prow.nxt .ar{color:#f0d58f;font-weight:700}.prow.past{opacity:.5}.prow.past .ar::after{content:" ✓";font-size:.8em}
+#app .sub{max-width:640px}
+#apk{position:relative;padding:16px 38px;font-size:1.1rem;animation:hxpl 2.4s infinite}#apk::before{content:"🤖 "}
+#app .steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;max-width:none;padding:0;margin:34px 0 20px}
+#app .steps li{counter-increment:s;position:relative;margin:0;padding:64px 20px 22px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(155deg,var(--card),transparent);backdrop-filter:blur(6px);transition:transform .35s,border-color .35s}
+#app .steps li:hover{transform:translateY(-6px);border-color:var(--gold)}
+#app .steps li::before{content:counter(s);position:absolute;top:18px;inset-inline-start:20px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,var(--gold),#f0d58f);color:#17130a;font-weight:700}
+html[lang="bn"] #app .steps li::before{content:counter(s,bengali)}
+#app .note{max-width:none!important;margin:14px 0;padding:18px 22px 18px 58px;position:relative;border:1px solid var(--line);border-radius:20px;background:linear-gradient(155deg,var(--card),transparent)}
+#app .note::before{position:absolute;inset-inline-start:18px;top:16px;font-size:1.5rem}
+#app [data-i="an"]::before{content:"🛡️"}#app [data-i="ai"]::before{content:"🍎"}
 </style>
 </head>
 <body>
@@ -680,6 +698,19 @@ rr.addEventListener("click",e=>{const d=e.target.closest("[data-bd]");if(d){bm=b
 if(e.target.closest("#s-theme")){toggleTheme();return}
 if(e.target.closest("#s-lang")){showLangs();return}});
 const _d=drawLangs;drawLangs=function(v){_d(v);const c=document.querySelector('#ll [data-ed="'+lang+'"]');if(c){c.classList.add("cur");const a=document.createElement("span");a.className="ar";a.textContent="✓";c.appendChild(a)}};
+})();
+</script>
+<script>
+(function(){
+const EM={Fajr:"🌙",Sunrise:"🌅",Dhuhr:"☀️",Asr:"🌤️",Maghrib:"🌇",Isha:"🌃"},ORD=["Fajr","Sunrise","Dhuhr","Asr","Maghrib","Isha"];let tm;
+function deco(){const rows=[].slice.call(document.querySelectorAll("#r .prow"));if(!rows.length||!PD)return;const day=PD.days&&PD.days[dk(new Date())];if(!day)return;const now=new Date(),nx=nextP();
+rows.forEach((row,i)=>{const n=ORD[i],w=at(new Date(),day[n]),b=row.querySelector("b");if(b)b.dataset.e=EM[n];row.classList.toggle("past",w<=now);row.classList.toggle("nxt",!!nx&&nx.n===n&&nx.w.toDateString()===now.toDateString())});
+let card=document.getElementById("pcd");const t=tt();if(!nx)return;
+if(!card){card=document.createElement("div");card.id="pcd";card.className="pcd";rows[0].parentNode.insertBefore(card,rows[0])}
+const list=["Fajr","Dhuhr","Asr","Maghrib","Isha"].map(n=>at(new Date(),day[n])),prev=list.filter(x=>x<=now).pop()||new Date(nx.w-8*36e5),pc=Math.max(0,Math.min(100,(now-prev)/(nx.w-prev)*100)),mins=Math.max(1,Math.ceil((nx.w-now)/6e4)),hh=Math.floor(mins/60),mm=mins%60;
+card.innerHTML="<small>"+t.nx+"</small><b>"+pn(nx.n)+'</b><div class="pt">'+fmtT(nx.w)+" · "+(hh?bn(hh)+t.hr+" ":"")+bn(mm)+t.mi+'</div><div class="pbr"><i style="width:'+pc+'%"></i></div>'}
+const _sp=showPray;showPray=async function(){await _sp();lv=showPray;deco();clearInterval(tm);tm=setInterval(()=>{if(!document.getElementById("pcd")){clearInterval(tm);return}deco()},20000)};
+document.getElementById("pbar").onclick=showPray;
 })();
 </script>
 </body>
