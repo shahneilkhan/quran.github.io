@@ -455,6 +455,16 @@ footer .fw{grid-template-columns:1fr 1fr;gap:26px}footer .fc{align-items:stretch
 @media (max-width:380px){nav>div{gap:5px!important}nav .tg{width:36px;height:36px}.lg-t{font-size:1.25rem}.hx-brand{transform:scale(.92)}}
 footer .fcta,footer .fw .fcta{color:#17130a!important;display:inline-block;transform:none}footer .fcta:hover{transform:translateY(-3px)}
 @media (max-width:640px){nav .tg::before{display:block;line-height:1;margin:0}nav .tg{align-content:center;justify-content:center}#stb{display:grid}}
+/* mini player */
+#mp{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));translate:-50% 30px;width:min(560px,94vw);z-index:15;display:flex;align-items:center;gap:8px;padding:9px 12px 12px;border-radius:99px;border:1px solid var(--gold);background:color-mix(in srgb,var(--bg2) 90%,transparent);backdrop-filter:blur(16px);box-shadow:0 24px 50px -18px rgba(0,0,0,.7),0 0 40px -12px var(--gold);opacity:0;pointer-events:none;transition:opacity .35s,translate .35s;overflow:hidden}
+#mp.on{opacity:1;translate:-50% 0;pointer-events:auto}
+#mp button{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--gold);font-size:1rem;line-height:1;display:grid;place-items:center;transition:transform .2s,border-color .2s}
+#mp button:hover{border-color:var(--gold);transform:scale(1.08)}
+#mp #mpp{width:48px;height:48px;background:linear-gradient(135deg,var(--gold),#f0d58f);color:#17130a;border-color:var(--gold);font-size:1.15rem}
+#mp .mpt{flex:1;min-width:0;text-align:start;line-height:1.25}#mp .mpt b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#mp .mpt small{color:var(--mute)}
+#mp .mpb{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--line)}#mp .mpb i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#f0d58f);transition:width .4s}
+#mp .eq{display:flex;gap:2px;align-items:flex-end;height:16px;margin-inline-end:2px}#mp .eq s{width:3px;height:4px;border-radius:2px;background:var(--gold);animation:hxeq 1s ease-in-out infinite;animation-play-state:paused}#mp.pl .eq s{animation-play-state:running}#mp .eq s:nth-child(2){animation-delay:.25s}#mp .eq s:nth-child(3){animation-delay:.5s}
+#m.mpon .read{padding-bottom:96px}
 </style>
 </head>
 <body>
@@ -892,6 +902,16 @@ const ctl=done?'<button class="cnb" data-kd="tb">←</button><button class="btn 
 r.innerHTML='<div class="cn-wrap">'+top+body+'<div class="cn-bub">'+txt+'</div><div class="cn-ctl">'+ctl+"</div></div>"}
 let sx=0;r.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
 r.addEventListener("touchend",e=>{if(!r.querySelector(".cn-wrap"))return;const dx=e.changedTouches[0].clientX-sx,n=STORIES[ST.i].pg.length;if(dx<-60&&ST.p<n)kAct("tp");else if(dx>60&&ST.p>0)kAct("tb")});
+})();
+</script>
+<script>
+(function(){
+const mp=document.createElement("div");mp.id="mp";mp.innerHTML='<div class="eq"><s></s><s></s><s></s></div><button id="mpv" aria-label="prev">⏮</button><button id="mpp" aria-label="play">▶</button><button id="mpn" aria-label="next">⏭</button><div class="mpt"><b></b><small></small></div><div class="mpb"><i></i></div>';document.body.appendChild(mp);
+const mm=document.getElementById("m"),lbl=mp.querySelector(".mpt b"),sm=mp.querySelector(".mpt small"),bar=mp.querySelector(".mpb i"),pb=document.getElementById("mpp");
+function upd(){const show=mm.classList.contains("on")&&!mm.classList.contains("kids")&&cur&&q&&q.length&&qi>=0;mp.classList.toggle("on",!!show);mm.classList.toggle("mpon",!!show);if(!show)return;mp.classList.toggle("pl",pp);pb.textContent=pp?"⏸":"▶";const a=(ca[1]?ca[1][0]:1)+qi;lbl.textContent=cur.name+" · "+AR[cur.n-1];sm.textContent=tt().ay+" "+bn(a)+" / "+bn(ca[1]?ca[1][1]:cur.c);bar.style.width=((qi+1)/q.length*100)+"%"}
+const _sp=setP;setP=function(){_sp();upd()};const _sa=stopA;stopA=function(){_sa();upd()};
+mp.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.id==="mpp"){if(pp){au.pause();pp=false;setP()}else if(qi>=0){au.play();pp=true;setP()}}else if(b.id==="mpn"){if(qi+1<q.length)playAt(qi+1)}else if(b.id==="mpv"){playAt(Math.max(0,qi-1))}});
+new MutationObserver(upd).observe(mm,{attributes:true,attributeFilter:["class"]});
 })();
 </script>
 </body>
