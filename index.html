@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://alquran.snkbp.com/og.png">
 <link rel="canonical" href="https://alquran.snkbp.com/">
 <title>Quranly — কুরআন পড়ুন, শুনুন, বুঝুন</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://api.alquran.cloud" crossorigin><link rel="dns-prefetch" href="https://api.quran.com"><link rel="dns-prefetch" href="https://cdn.islamic.network">
+<link rel="preload" as="image" href="logo-hero.webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://api.alquran.cloud" crossorigin><link rel="dns-prefetch" href="https://api.quran.com"><link rel="dns-prefetch" href="https://cdn.islamic.network">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{--bg:#0a0a0a;--bg2:#161310;--ink:#f5efe0;--mute:#a99f88;--gold:#d4af37;--teal:#f0d58f;--line:rgba(212,175,55,.26);--card:rgba(255,255,255,.045);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -420,10 +420,45 @@ html[lang="bn"] #app .steps li::before{content:counter(s,bengali)}
 .cn-big{left:50%;top:42%;translate:-50% -50%;font-size:7.5rem;z-index:3;filter:drop-shadow(0 0 30px #fff6a8);animation:cnpop .9s cubic-bezier(.2,1.6,.4,1) both,cnfl 3s 1s ease-in-out infinite alternate}
 .cn-stars{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:2.2rem;z-index:4}.cn-stars span{display:inline-block;animation:cnpop .6s cubic-bezier(.2,1.8,.4,1) both}
 @media (prefers-reduced-motion:reduce){.cn *,.cn,.cn-bub,.cnb.go{animation:none!important}.cn-bub .w{opacity:1}}
+/* nav logo + footer + mobile */
+.logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.lg-i{height:40px;width:auto;border-radius:50%;filter:drop-shadow(0 0 12px rgba(212,175,55,.45));transition:transform .5s}.logo:hover .lg-i{transform:rotate(-8deg) scale(1.1)}
+.lg-t{font-family:Amiri,serif;font-weight:700;font-size:1.65rem;line-height:1;letter-spacing:.01em;background:linear-gradient(100deg,var(--ink) 20%,var(--gold) 60%,#f0d58f);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+nav{padding-block:9px}
+footer{position:relative;margin-top:30px;padding:70px 6vw 26px;text-align:start;background:radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--gold) 14%,transparent),transparent 60%),linear-gradient(180deg,transparent,color-mix(in srgb,var(--gold) 6%,var(--bg)))}
+footer::before{content:"◆";position:absolute;top:-11px;left:50%;translate:-50% 0;width:34px;height:22px;display:grid;place-items:center;background:var(--bg);color:var(--gold);font-size:.8rem}
+footer .fw{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;max-width:1100px;margin:0 auto;text-align:start}
+footer .flg .lg-i{height:66px}footer .flg .lg-t{font-size:2.3rem}
+footer .fb p{max-width:340px;margin:12px 0 20px;color:var(--mute)}
+footer .fcta{display:inline-block;padding:11px 24px;font-size:.95rem}
+footer h4{font-family:Amiri,serif;font-size:1.25rem;margin-bottom:12px;color:var(--gold)}
+footer .fn a{display:block;padding:5px 0;color:var(--mute);text-decoration:none;transition:color .25s,transform .25s}footer .fn a:hover{color:var(--ink);transform:translateX(6px)}
+footer .fn a::before{content:"›";color:var(--gold);margin-inline-end:8px}
+footer .fc{display:flex;flex-direction:column;align-items:flex-start;gap:10px}footer .fc h4{margin-bottom:2px}
+footer .fbar{max-width:1100px;margin:44px auto 0;padding-top:20px;border-top:1px solid var(--line);text-align:center}footer .fbar small{display:block;margin:0;color:var(--mute);letter-spacing:.03em}
+@media (max-width:820px){footer{padding:56px 6vw 24px}footer .fw{grid-template-columns:1fr 1fr;gap:30px}footer .fb{grid-column:1/-1;text-align:center}footer .fb p{margin-inline:auto}footer .flg{justify-content:center}}
+@media (max-width:640px){
+nav{padding:8px 4vw;gap:0}nav>div{flex-wrap:nowrap!important;gap:8px!important;justify-content:flex-end}
+.lg-i{height:34px}.lg-t{font-size:1.4rem}
+nav .tg{width:40px;height:40px;padding:0;display:grid;place-items:center;font-size:0;line-height:1}
+#stb{font-size:1.1rem!important}
+#bmb::before{content:"★";font-size:1.15rem;color:var(--gold)}#lb::before{content:"🌐";font-size:1.05rem}#tg::before{content:"🌗";font-size:1.05rem}
+.pbar{font-size:.82rem}
+section{padding:62px 5vw}h2{font-size:clamp(1.7rem,7vw,2.2rem)}
+.stats{gap:10px;padding:34px 4vw 16px}.stats>div{min-width:0;flex:1 1 90px;padding:16px 8px;border-radius:18px}.stats b{font-size:2rem}
+.search{padding:13px 18px}.chips{gap:8px}.chips button{padding:7px 14px;font-size:.92rem}
+.modal{padding:66px 4vw 40px}.modal .x,.lm{top:calc(12px + env(safe-area-inset-top,0px))}
+.btn{padding:12px 24px}
+.tg,.btn,.chips button{min-height:42px}
+footer .fw{grid-template-columns:1fr 1fr;gap:26px}footer .fc{align-items:stretch}footer .fc .tg{width:100%}
+}
+@media (max-width:380px){nav>div{gap:5px!important}nav .tg{width:36px;height:36px}.lg-t{font-size:1.25rem}.hx-brand{transform:scale(.92)}}
+footer .fcta,footer .fw .fcta{color:#17130a!important;display:inline-block;transform:none}footer .fcta:hover{transform:translateY(-3px)}
+@media (max-width:640px){nav .tg::before{display:block;line-height:1;margin:0}nav .tg{align-content:center;justify-content:center}#stb{display:grid}}
 </style>
 </head>
 <body>
-<nav><a class="logo" href="#top">قرآنلي</a><div><a href="#surahs" data-i="s">সূরা</a><a href="#plans" data-i="p">লার্নিং প্ল্যান</a><a href="#app" data-i="ap">App</a><button class="tg" id="stb" aria-label="Settings">⚙</button><button class="tg" id="bmb"><span data-i="bk">Bookmarks</span></button><button class="tg" id="lb" aria-label="ভাষা বদলান">ভাষা: বাংলা</button><button class="tg tgl" id="tg" aria-label="থিম বদলান"><span data-i="th">থিম</span></button></div><button class="pbar" id="pbar" hidden></button></nav>
+<nav><a class="logo" href="#top" aria-label="Quranly"><img class="lg-i" src="logo-hero.webp" alt="" width="38" height="40"><span class="lg-t">Quranly</span></a><div><a href="#surahs" data-i="s">সূরা</a><a href="#plans" data-i="p">লার্নিং প্ল্যান</a><a href="#app" data-i="ap">App</a><button class="tg" id="stb" aria-label="Settings">⚙</button><button class="tg" id="bmb"><span data-i="bk">Bookmarks</span></button><button class="tg" id="lb" aria-label="ভাষা বদলান">ভাষা: বাংলা</button><button class="tg tgl" id="tg" aria-label="থিম বদলান"><span data-i="th">থিম</span></button></div><button class="pbar" id="pbar" hidden></button></nav>
 
 <section class="hero hx" id="top">
 <div class="hx-bg" aria-hidden="true"><i class="hx-o1"></i><i class="hx-o2"></i><svg viewBox="0 0 400 400"><g class="s1" style="transform-origin:200px 200px"><rect x="90" y="90" width="220" height="220"/><rect x="90" y="90" width="220" height="220" transform="rotate(45 200 200)"/><circle cx="200" cy="200" r="150"/></g></svg></div>
@@ -459,7 +494,14 @@ html[lang="bn"] #app .steps li::before{content:counter(s,bengali)}
 
 <section id="dev"><h2 data-i="dv"></h2><p class="sub" data-i="dvt"></p><a class="btn" href="https://shahneilkhan.snkbp.com" target="_blank" rel="noopener" data-i="dvb"></a></section>
 
-<footer><div class="fw"><div class="fb"><span class="logo">قرآنلي</span><p data-i="ft"></p></div><div><h4 data-i="nv"></h4><a href="#top" data-i="hm"></a><a href="#surahs" data-i="s"></a><a href="#plans" data-i="p"></a><a href="#app" data-i="ap"></a><a href="#" id="kdf" data-i="kd"></a><a href="#learn" data-i="ln"></a><a href="https://shahneilkhan.snkbp.com" target="_blank" rel="noopener" data-i="dvb"></a></div><div class="fc"><button class="tg tgl"><span data-i="th"></span></button><button class="tg" id="lb3"></button></div></div><small>© 2026 Nur · alquran.cloud</small></footer>
+<footer>
+<div class="fw">
+<div class="fb"><a class="logo flg" href="#top" aria-label="Quranly"><img class="lg-i" src="logo-hero.webp" alt="" width="64" height="67"><span class="lg-t">Quranly</span></a><p data-i="ft"></p><a class="btn fcta" href="https://github.com/shahneilkhan/quran.github.io/releases/latest/download/al-quran.apk" data-i="ab"></a></div>
+<div class="fn"><h4 data-i="nv"></h4><a href="#top" data-i="hm"></a><a href="#surahs" data-i="s"></a><a href="#plans" data-i="p"></a><a href="#app" data-i="ap"></a><a href="#" id="kdf" data-i="kd"></a><a href="#learn" data-i="ln"></a><a href="https://shahneilkhan.snkbp.com" target="_blank" rel="noopener" data-i="dvb"></a></div>
+<div class="fc"><h4 data-i="st"></h4><button class="tg tgl"><span data-i="th"></span></button><button class="tg" id="lb3"></button></div>
+</div>
+<div class="fbar"><small>© 2026 Quranly · snk.server</small></div>
+</footer>
 
 <div class="toast" id="toast"></div>
 <div class="lp" id="lp" role="menu"></div>
@@ -495,7 +537,7 @@ sw:{s:"Sura",h:"Soma, sikiliza na jifunze Qur'ani",go:"Anza kusoma",ph:"Tafuta s
 vi:{s:"Chương",h:"Đọc, nghe và học Kinh Qur'an",go:"Bắt đầu đọc",ph:"Tìm chương, vd. Kahf hoặc 18",ay:"câu",ld:"Đang tải…",n1:"Chương",n2:"Câu",n3:"Juz",h2:"Kinh Qur'an",lg:"Ngôn ngữ",th:"Giao diện",pa:"Nghe chương"},
 th:{s:"บท",h:"อ่าน ฟัง และศึกษาอัลกุรอาน",go:"เริ่มอ่าน",ph:"ค้นหาบท เช่น Kahf หรือ 18",ay:"อายะฮ์",ld:"กำลังโหลด…",n1:"บท",n2:"อายะฮ์",n3:"ญุซ",h2:"อัลกุรอาน",lg:"ภาษา",th:"ธีม",pa:"เล่นบท"},hi:{s:"सूरह",p:"सीखने की योजनाएँ",h:"क़ुरआन पढ़ें, सुनें और समझें",d:"मुफ़्त और कई भाषाओं में। अरबी पाठ और अनुवाद एक जगह।",go:"पढ़ना शुरू करें",pl:"योजनाएँ देखें",ph:"सूरह खोजें, जैसे Kahf या 18",ay:"आयतें",ld:"लोड हो रहा है…",er:"लोड नहीं हो सका। इंटरनेट जाँचकर फिर कोशिश करें।",n1:"सूरह",n2:"आयतें",n3:"पारा",h2:"क़ुरआन",h3:"सीखने की योजनाएँ",ft:"क़ुरआन पढ़ने और समझने की एक मुफ़्त जगह।",nv:"नेविगेट",hm:"होम",th:"थीम",lg:"भाषा",pa:"सूरह सुनें",bk:"बुकमार्क",nb:"अभी कोई बुकमार्क नहीं। आयत के पास ☆ दबाएँ।",ct:"जहाँ छोड़ा था वहीं से पढ़ें",dys:"दिन",dy:"दिन",rf:"धीरे पढ़ें, अर्थ पर सोचें, फिर आज के लिए एक काम चुनें।",dn:"पूरा हुआ",ap:"ऐप डाउनलोड करें",as:"Android फ़ोन के लिए। सिर्फ़ इसी आधिकारिक लिंक से डाउनलोड करें।",ab:"⬇ Quranly APK डाउनलोड करें",a1:"APK डाउनलोड करके फ़ाइल पर टैप करें।",a2:"अगर फ़ोन “अज्ञात स्रोत” के बारे में पूछे तो Settings में जाकर इस स्रोत को अनुमति दें।",a3:"अगर Play Protect चेतावनी दे तो More details पर टैप करके Install anyway दबाएँ।",an:"चेतावनी क्यों? यह ऐप Google Play के बाहर से इंस्टॉल हो रहा है, इसलिए Android ऐसे हर ऐप पर चेतावनी देता है। इसका मतलब यह नहीं कि कुछ गड़बड़ है, फिर भी सुरक्षित रहने के लिए सिर्फ़ इसी पेज या हमारे आधिकारिक GitHub Release से डाउनलोड करें, किसी और की भेजी APK कभी इंस्टॉल न करें।",ai:"iPhone: Safari में साइट खोलें, Share दबाएँ, फिर Add to Home Screen चुनें।",ml:"और भाषाएँ…",ls:"भाषा खोजें",st:"सेटिंग्स",fz:"अक्षर का आकार",pt:"नमाज़ के समय",nx:"अगली नमाज़",nf:"नमाज़ रिमाइंडर",bf:"कितना पहले बताएँ",gp:"मेरी लोकेशन इस्तेमाल करें",mt:"गणना विधि",mz:"अस्र का समय",pw:"नमाज़ के समय आपकी चुनी विधि और मसलक के अनुसार बदलते हैं। अपनी स्थानीय मस्जिद की समय-सारणी से मिला लें।",pnow:"नमाज़ का समय हो गया है",mn2:"मिनट बाकी",hr:"घं",mi:"मि",cp:"कॉपी हो गया"}};
 const tt=()=>Object.assign({},T.en,T[(lang||"bn").split(".")[0]]||{});
-function applyUI(){const t=tt(),c=(lang||"").split(".")[0],d=document.documentElement;d.lang=T[c]?c:"en";d.dir=["ar","ur","fa"].includes(c)?"rtl":"ltr";document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t[e.dataset.i]);document.querySelectorAll("[data-ip]").forEach(e=>e.placeholder=t[e.dataset.ip]);document.getElementById("lb2").textContent=t.lg;document.getElementById("lb3").textContent=t.lg+": "+lname();drawL();renderPlans();tickBar();document.querySelectorAll(".logo").forEach(e=>e.textContent=BRAND.logo);document.querySelector("footer small").textContent="© 2026 "+BRAND.name+" · alquran.cloud";const q=document.getElementById("q");q.oninput({target:q})}
+function applyUI(){const t=tt(),c=(lang||"").split(".")[0],d=document.documentElement;d.lang=T[c]?c:"en";d.dir=["ar","ur","fa"].includes(c)?"rtl":"ltr";document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t[e.dataset.i]);document.querySelectorAll("[data-ip]").forEach(e=>e.placeholder=t[e.dataset.ip]);document.getElementById("lb2").textContent=t.lg;document.getElementById("lb3").textContent=t.lg+": "+lname();drawL();renderPlans();tickBar();document.querySelector("footer small").textContent="© 2026 "+BRAND.name+" · snk.server";const q=document.getElementById("q");q.oninput({target:q})}
 const L=[["bn.bengali","বাংলা"],["ar.muyassar","العربية"],["en.sahih","English"],["ur.jalandhry","اردو"],["hi.hindi","हिन्दी"],["fa.makarem","فارسی"],["fr.hamidullah","Français"],["id.indonesian","Indonesia"],["tr.diyanet","Türkçe"],["ru.kuliev","Русский"],["es.cortes","Español"],["zh.jian","简体中文"],["ms.basmeih","Melayu"],["de.aburida","Deutsch"],["it.piccardo","Italiano"],["nl.keyzer","Nederlands"],["pt.elhayek","Português"],["sq.ahmeti","Shqip"],["sw.barwani","Kiswahili"],["vi.hassan","Tiếng Việt"],["th.thai","ภาษาไทย"],["none","Arabic only"]];
 var lang="bn.bengali",cur=null;try{lang=localStorage.getItem("nl")||lang}catch(e){}
 const lp=document.getElementById("lp"),lb=document.getElementById("lb");
