@@ -492,6 +492,12 @@ footer .fcta,footer .fw .fcta{color:#17130a!important;display:inline-block;trans
 .flinks{display:flex;gap:12px;justify-content:center;margin-bottom:10px;color:var(--mute)}.flinks a{color:var(--mute);text-decoration:none}.flinks a:hover{color:var(--gold)}
 .doc{max-width:680px;margin:0 auto;text-align:start;line-height:1.85}.doc h3{font-family:Amiri,serif;color:var(--gold);margin:22px 0 4px;font-size:1.25rem}.doc p{color:var(--ink)}
 @media (max-width:820px){.megrid{grid-template-columns:1fr}.mtop{gap:14px}.ring{width:96px;height:96px}}
+/* ayah of the day + search */
+.dya{margin:0 0 20px;padding:26px 24px 20px;border-radius:30px;border:1px solid var(--gold);text-align:center;background:radial-gradient(circle at 50% -20%,color-mix(in srgb,var(--gold) 22%,transparent),transparent 60%),linear-gradient(170deg,color-mix(in srgb,var(--bg2) 88%,transparent),transparent);box-shadow:0 30px 60px -38px var(--gold)}
+.dyh{display:flex;justify-content:space-between;align-items:center;color:var(--gold);font-weight:600;margin-bottom:6px}.dyh small{color:var(--mute);font-weight:400}
+.dya-ar{font-family:Amiri,"Noto Naskh Arabic",serif;direction:rtl;font-size:clamp(1.8rem,4.6vw,2.7rem);line-height:2.1;color:var(--ink);padding:6px 4px}.dya-tr{color:var(--mute);line-height:1.85;margin:2px auto 14px;max-width:720px}
+.dyb{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.dya:empty{display:none}
+.srr{width:100%;margin-bottom:10px;align-items:flex-start!important}.srr small.srt{white-space:normal;display:block;line-height:1.7;margin-top:4px;color:var(--ink);opacity:.85}.srr mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;border-radius:4px;padding:0 2px}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Quranly","url":"https://alquran.snkbp.com/","applicationCategory":"EducationalApplication","operatingSystem":"Web, Android","inLanguage":["bn","en","ar","ur","hi","fr","id","tr","es"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Read, listen and understand the Quran in many languages. Free."}</script>
 </head>
@@ -1164,6 +1170,52 @@ else if(x.id==="ofr"){if(window.caches)caches.delete("quranly-offline");try{loca
 else if(x.id==="qbg"){if(!navigator.geolocation)return;navigator.geolocation.getCurrentPosition(p=>{PS.lat=p.coords.latitude;PS.lon=p.coords.longitude;PS.loc="📍 "+PS.lat.toFixed(2)+", "+PS.lon.toFixed(2);svPS();showQibla()},()=>toast(tt().er),{timeout:15000})}
 else if(x.id==="qbc"){try{if(window.DeviceOrientationEvent&&DeviceOrientationEvent.requestPermission)DeviceOrientationEvent.requestPermission()}catch(e){}}});
 rr.addEventListener("change",e=>{if(e.target.id==="hfs")showHifz(+e.target.value);else if(e.target.id==="s-goal"){W("ngl",+e.target.value);renderProg()}});
+applyUI();
+})();
+</script>
+<script>(function(){const N={"en": {"dya": "Ayah of the day", "sch": "Search ayahs", "schp": "Search a word in the Quran…", "nrs": "No results found", "shre": "Share", "opn": "Open in surah"}, "bn": {"dya": "দিনের আয়াত", "sch": "আয়াত খুঁজুন", "schp": "কুরআনে কোনো শব্দ খুঁজুন…", "nrs": "কিছু পাওয়া যায়নি", "shre": "শেয়ার", "opn": "সূরায় খুলুন"}, "ar": {"dya": "آية اليوم", "sch": "ابحث في الآيات", "schp": "ابحث عن كلمة في القرآن…", "nrs": "لا توجد نتائج", "shre": "مشاركة", "opn": "افتح في السورة"}, "ur": {"dya": "آج کی آیت", "sch": "آیات تلاش کریں", "schp": "قرآن میں کوئی لفظ تلاش کریں…", "nrs": "کوئی نتیجہ نہیں ملا", "shre": "شیئر کریں", "opn": "سورت میں کھولیں"}, "hi": {"dya": "आज की आयत", "sch": "आयतें खोजें", "schp": "क़ुरआन में कोई शब्द खोजें…", "nrs": "कोई नतीजा नहीं मिला", "shre": "शेयर करें", "opn": "सूरह में खोलें"}, "fr": {"dya": "Verset du jour", "sch": "Rechercher des versets", "schp": "Chercher un mot dans le Coran…", "nrs": "Aucun résultat", "shre": "Partager", "opn": "Ouvrir dans la sourate"}, "id": {"dya": "Ayat hari ini", "sch": "Cari ayat", "schp": "Cari kata dalam Al-Qur'an…", "nrs": "Tidak ada hasil", "shre": "Bagikan", "opn": "Buka di surah"}, "tr": {"dya": "Günün ayeti", "sch": "Ayet ara", "schp": "Kur'an'da bir kelime ara…", "nrs": "Sonuç bulunamadı", "shre": "Paylaş", "opn": "Surede aç"}, "es": {"dya": "Aleya del día", "sch": "Buscar aleyas", "schp": "Buscar una palabra en el Corán…", "nrs": "Sin resultados", "shre": "Compartir", "opn": "Abrir en la sura"}};for(const l in N)T[l]=Object.assign(T[l]||{},N[l])})();</script>
+<script>
+(function(){
+const rr=document.getElementById("r"),mm=document.getElementById("m");
+const J=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},W=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const REFS=["2:152","2:153","2:186","2:255","2:286","3:8","3:139","3:173","9:51","13:28","14:7","16:128","18:10","20:46","21:87","24:35","29:69","33:41","39:53","40:60","41:34","49:13","55:13","59:22","65:3","93:3","94:5","94:6","112:1"];
+const dayIdx=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
+const lc=()=>{const c=(lang||"bn").split(".")[0];return c==="none"?"en":c};
+let da=new Audio(),playing=false;
+function openAt(s,a){return openS(D[s-1]).then(()=>{const el=rr.querySelectorAll(".ay")[a-1];if(el)el.scrollIntoView({block:"center"})})}
+async function loadDaily(){const el=document.getElementById("dya");if(!el)return;const t=tt(),ref=REFS[dayIdx()%REFS.length],key=ref+"|"+lang+"|"+rec,ch=J("ndy",null);let data=ch&&ch.k===key?ch.v:null;
+if(!data){el.innerHTML='<div class="skc" style="max-width:none"><i class="sk a"></i><i class="sk c"></i></div>';
+try{const eds=["quran-uthmani"].concat(lang==="none"?[]:[lang],[rec]).join(","),res=await fetch("https://api.alquran.cloud/v1/ayah/"+ref+"/editions/"+eds);if(!res.ok)throw 0;const j=await res.json(),L=j.data;data={a:L[0].text,t:lang==="none"?"":L[1].text,u:L[L.length-1].audio||""};W("ndy",{k:key,v:data})}catch(e){el.innerHTML="";return}}
+const p=ref.split(":").map(Number),s=D[p[0]-1];
+el.innerHTML='<div class="dyh"><span>✦ '+t.dya+'</span><small>'+s.name+" · "+bn(p[1])+'</small></div><div class="dya-ar">'+esc(data.a)+"</div>"+(data.t?'<div class="dya-tr" dir="'+(isRtl()?"rtl":"ltr")+'">'+esc(data.t)+"</div>":"")+'<div class="dyb">'+(data.u?'<button class="chb" id="dyp">▶ '+t.hfl+"</button>":"")+'<button class="chb" id="dys">↗ '+t.shre+'</button><button class="chb" id="dyo">'+t.opn+"</button></div>";
+el._d={ref:ref,p:p,s:s,data:data}}
+async function shareDaily(){const el=document.getElementById("dya"),d=el&&el._d;if(!d)return;const ref=d.s.name+" "+d.p[0]+":"+d.p[1],text=d.data.a+"\n"+d.data.t+"\n— "+ref+"\n"+BRAND.url;let blob=null;try{blob=await card(d.data.a,d.data.t,ref)}catch(e){}
+try{const f=blob&&new File([blob],"ayah.png",{type:"image/png"});if(f&&navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:ref});return}if(navigator.share){await navigator.share({text});return}await navigator.clipboard.writeText(text);toast(tt().cp)}catch(e){}}
+/* ---------- search ---------- */
+const edId=()=>(lang==="none"||lc()==="ar")?"quran-simple":lang;
+const rx=s=>s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+let st=0;
+function showSearch(){opM();lv=showSearch;const t=tt();rr.innerHTML="<h2>🔍 "+t.sch+'</h2><input class="search" id="sq" style="display:block;margin:0 auto 22px" placeholder="'+escA(t.schp)+'" aria-label="'+escA(t.sch)+'" autocomplete="off"><div id="sr"></div>';const i=document.getElementById("sq");setTimeout(()=>i.focus(),50)}
+async function doSearch(q){const box=document.getElementById("sr");if(!box)return;const t=tt(),my=++st;q=q.trim();if(q.length<3){box.innerHTML="";return}
+box.innerHTML='<div class="skl">'+[0,1,2].map(()=>'<div class="skc"><i class="sk a"></i><i class="sk c"></i></div>').join("")+"</div>";
+try{const res=await fetch("https://api.alquran.cloud/v1/search/"+encodeURIComponent(q)+"/all/"+edId());if(my!==st)return;if(res.status===404){box.innerHTML='<p class="emp">'+t.nrs+"</p>";return}if(!res.ok)throw 0;const j=await res.json(),ms=(j.data&&j.data.matches)||[];if(my!==st)return;
+if(!ms.length){box.innerHTML='<p class="emp">'+t.nrs+"</p>";return}
+const re=new RegExp("("+rx(q)+")","gi");box.innerHTML='<p class="note" style="margin:0 0 12px">'+bn(j.data.count)+" "+t.ayu+"</p>"+ms.slice(0,50).map(m=>'<button class="sc in srr" data-sg="'+m.surah.number+":"+m.numberInSurah+'"><span class="n"><i>'+bn(m.surah.number)+"</i></span><span><b>"+D[m.surah.number-1].name+" · "+bn(m.numberInSurah)+'</b><small class="srt" dir="'+(edId()==="quran-simple"||isRtl()?"rtl":"ltr")+'">'+esc(m.text).replace(re,"<mark>$1</mark>")+'</small></span><span class="ar">'+AR[m.surah.number-1]+"</span></button>").join("")}
+catch(e){if(my===st)box.innerHTML='<div class="erc"><b>📡</b><p>'+t.er+"</p></div>"}}
+let tmo=0;
+document.addEventListener("input",e=>{if(e.target.id==="sq"){clearTimeout(tmo);const v=e.target.value;tmo=setTimeout(()=>doSearch(v),450)}});
+document.addEventListener("click",e=>{const x=e.target.closest("#dyp,#dys,#dyo,[data-sg],#schb");if(!x)return;
+if(x.id==="schb"){showSearch();return}
+if(x.id==="dys"){shareDaily();return}
+if(x.id==="dyo"){const d=document.getElementById("dya")._d;if(d)openAt(d.p[0],d.p[1]);return}
+if(x.id==="dyp"){const d=document.getElementById("dya")._d;if(!d)return;if(playing){da.pause();playing=false;x.textContent="▶ "+tt().hfl}else{da.src=d.data.u;da.play().catch(()=>{});playing=true;x.textContent="⏸ "+tt().hfl;da.onended=()=>{playing=false;x.textContent="▶ "+tt().hfl}}return}
+if(x.dataset.sg){const p=x.dataset.sg.split(":").map(Number);openAt(p[0],p[1])}});
+/* ---------- mount ---------- */
+const me=document.getElementById("me"),grid=me&&me.querySelector(".megrid");
+if(grid){const d=document.createElement("div");d.className="dya";d.id="dya";me.insertBefore(d,grid)}
+const q=document.getElementById("q");if(q){const b=document.createElement("button");b.className="btn o";b.id="schb";b.style.cssText="display:block;margin:-14px 0 24px";b.textContent="🔍";q.insertAdjacentElement("afterend",b)}
+function lab(){const b=document.getElementById("schb");if(b)b.textContent="🔍 "+tt().sch}
+const _a=applyUI;applyUI=function(){_a();lab();loadDaily()};
 applyUI();
 })();
 </script>
